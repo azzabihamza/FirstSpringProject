@@ -41,8 +41,9 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Client retrieveClient(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Client client = clientRepository.findById(id).orElse(null);
+		System.out.println("Client :" + client);
+		return client;
 	}
 
 }
