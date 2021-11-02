@@ -8,11 +8,7 @@ public interface ProduitService {
 
 	List<Produit> retrieveAllProduits();
 
-	Produit addProduit(Produit p);
+	Produit addProduit(Produit p, Long idRayon, Long idStock);
 
-	void deleteProduit(Produit p);
-
-	Produit updateClient(Produit p);
-
-	Produit retrieveClient(Long id);
+	Produit retrieveProduit(Long id);
 }
