@@ -15,21 +15,28 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public List<Stock> retrieveAllStocks() {
-        return null;
+        List<Stock> stocks = (List<Stock>) stockRepository.findAll();
+        for (Stock stock : stocks)
+            System.out.println("stock : "+ stock);
+        return stocks;
     }
 
     @Override
     public Stock addStock(Stock s) {
+        stockRepository.save(s);
         return null;
     }
 
     @Override
     public Stock updateStock(Stock u) {
-        return null;
+        stockRepository.save(u);
+        return u;
     }
 
     @Override
     public Stock retrieveStock(Long id) {
-        return null;
+        Stock stock = stockRepository.findById(id).orElse(null);
+        System.out.println("stock : "+ stock);
+        return stock;
     }
 }
