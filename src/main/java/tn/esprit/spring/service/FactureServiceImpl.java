@@ -15,16 +15,25 @@ public class FactureServiceImpl implements FactureService{
 
     @Override
     public List<Facture> retrieveAllFactures() {
-        return null;
+        List<Facture> factures = (List<Facture>) factureRepository.findAll();
+        for (Facture facture : factures)
+            System.out.println("facture : "+ facture);
+        return factures;
     }
 
     @Override
     public void cancelFacture(Long id) {
-
+        Facture facture = factureRepository.findById(id).orElse(null);
+        if (facture != null) {
+            facture.setActive(false);
+        }
+        factureRepository.save(facture);
     }
 
     @Override
     public Facture retrieveFacture(Long id) {
-        return null;
+        Facture facture = factureRepository.findById(id).orElse(null);
+        System.out.println("facture : "+facture);
+        return facture;
     }
 }
