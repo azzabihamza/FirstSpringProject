@@ -53,6 +53,22 @@ public class Client implements Serializable {
 		this.factures = factures;
 	}
 
+	public Client() {
+
+	}
+
+	/*
+	public Client(String nom, String prenom, String email, String password, Date dateNaissance,
+				  Profession profession, CategorieClient categorieClient) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.password = password;
+		this.dateNaissance = dateNaissance;
+		this.profession = profession;
+		this.categorieClient = categorieClient;
+	}
+	*/
 	public Profession getProfession() {
 		return profession;
 	}
@@ -125,4 +141,18 @@ public class Client implements Serializable {
 		this.dateNaissance = dateNaissance;
 	}
 
+	@Override
+	public String toString() {
+		return "Client{" +
+				"idClient=" + idClient +
+				", nom='" + nom + '\'' +
+				", prenom='" + prenom + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", dateNaissance=" + dateNaissance +
+				", profession=" + profession +
+				", categorieClient=" + categorieClient +
+				", factures=" + factures +
+				'}';
+	}
 }
