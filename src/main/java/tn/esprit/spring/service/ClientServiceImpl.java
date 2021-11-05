@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.DAO.Client;
 import tn.esprit.spring.repository.ClientRepository;
 
@@ -30,11 +31,13 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteClient(Client c) {
 		clientRepository.delete(c);
 	}
 
 	@Override
+	@Transactional
 	public Client updateClient(Client c) {
 		return clientRepository.save(c);
 	}

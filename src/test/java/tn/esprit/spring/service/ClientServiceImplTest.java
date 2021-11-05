@@ -24,6 +24,7 @@ class ClientServiceImplTest {
     ClientRepository clientRepository;
 
 
+
     @Test
     void retrieveAllClients() {
         List<Client> clientsList = (List<Client>) clientRepository.findAll();
@@ -35,7 +36,7 @@ class ClientServiceImplTest {
     @Test
     @Rollback(false)
     void addClient() {
-        Client client = new Client(null,"Azzabi","Hamza","hamza.azzabi@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
+        Client client = new Client(null,"Azzabi","Hamza","hamza.azzabitest@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
         System.out.println(client.toString());
         clientRepository.save(client);
     }
@@ -49,7 +50,8 @@ class ClientServiceImplTest {
     @Test
     void updateClient() {
         String nom = "azzabiUpdate";
-        Client client = new Client(1L,nom,"Hamza","hamza.azzabi@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
+        Client client = clientRepository.findById(1L).orElse(null);
+        client.setNom(nom);
         clientRepository.save(client);
         Client clientUpdated = clientRepository.findById(1L).orElse(null);
         System.out.println(clientUpdated.toString());
