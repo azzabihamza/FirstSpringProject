@@ -10,18 +10,19 @@ import java.util.List;
 
 public interface FactureRepository extends CrudRepository<Facture, Long> {
 
-    @Query("select * from Facture where active = true ")
+    @Query("select f from Facture f where f.active = true ")
     List<Facture> retrieveAllActiveFacture();
 
-    @Query("select * from Facture where active = false ")
+    @Query("select f from Facture f where f.active = false ")
     List<Facture> retrieveAllInActiveFacture();
 
-    @Query("select * from Facture where dateFacture between :date1 and :date2")
+    @Query("select f from Facture f where f.dateFacture between :date1 and :date2")
     List<Facture> retirveAllFactureBetweenDate(@Param("date1") String date1, @Param("date2") String date2);
 
-    @Query("SELECT * from Facture order by dateFacture desc ")
+    @Query("SELECT f from Facture f order by f.dateFacture desc ")
     List<Facture> retrieveAllFactureByDateFactureDesc();
 
-    @Query("select * from Facture order by dateFacture")
+    @Query("select f from Facture f order by f.dateFacture")
     List<Facture> retrieveAllFactureByDateFactureAsc();
+
 }

@@ -13,9 +13,9 @@ public interface ProduitRepository extends CrudRepository<Produit, Long> {
     @Query("select p from Produit p where p.prixUnitaire between :min and :max")
     List<Produit> retrieveProduitByPriceRange(@Param("min") double min, @Param("max") double max);
 
-    @Query("SELECT * from Produit order by prixUnitaire desc ")
+    @Query("SELECT p from Produit p order by p.prixUnitaire desc ")
     List<Produit> retireveAllProduitByPriceDesc();
 
-    @Query("SELECT * from Produit order by prixUnitaire asc ")
+    @Query("SELECT p from Produit p order by p.prixUnitaire asc ")
     List<Produit> retireveAllProduitByPriceAsc();
 }
