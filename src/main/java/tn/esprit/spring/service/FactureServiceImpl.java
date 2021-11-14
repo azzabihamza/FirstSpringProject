@@ -36,4 +36,40 @@ public class FactureServiceImpl implements FactureService{
         System.out.println("facture : "+facture);
         return facture;
     }
+
+    @Override
+    public void createFacture(Facture facture) {
+        factureRepository.save(facture);
+    }
+
+    @Override
+    public void updateFacture(Facture facture) {
+        factureRepository.save(facture);
+    }
+
+    @Override
+    public void deleteFacture(Long id) {
+        factureRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Facture> retrieveFacturesByClient(Long id) {
+        List<Facture> factures = (List<Facture>) factureRepository.retrieveAllFactureByClient(id);
+        return factures;
+    }
+
+    @Override
+    public List<Facture> retrieveFacturesByClientAndStatus(Long id, String status) {
+        return null;
+    }
+
+    @Override
+    public List<Facture> retrieveFacturesByClientAndStatusAndDate(Long id, String status, String date) {
+        return null;
+    }
+
+    @Override
+    public List<Facture> retrieveFacturesByClientAndStatusAndDateAndType(Long id, String status, String date, String type) {
+        return null;
+    }
 }
