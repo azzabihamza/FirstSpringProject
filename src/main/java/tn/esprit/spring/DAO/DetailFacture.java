@@ -37,6 +37,10 @@ public class DetailFacture implements Serializable {
 		this.facture = facture;
 	}
 
+	public DetailFacture() {
+
+	}
+
 	public Produit getProduit() {
 		return produit;
 	}

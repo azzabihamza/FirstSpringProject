@@ -25,7 +25,8 @@ public interface FactureRepository extends CrudRepository<Facture, Long> {
     @Query("select f from Facture f order by f.dateFacture")
     List<Facture> retrieveAllFactureByDateFactureAsc();
 
-    @Query("select f from Facture f where f.client = :idclient")
-    List<Facture> retrieveAllFactureByClient(@Param("idclient") Long idclient);
+    @Query("select f from Facture f where f.idFacture = :idFacture")
+    Facture retrieveFactureById(@Param("idFacture") Long idFacture);
+
 
 }

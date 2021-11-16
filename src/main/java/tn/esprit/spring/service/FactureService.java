@@ -17,13 +17,10 @@ public interface FactureService {
 
     void deleteFacture(Long id);
 
-    List<Facture> retrieveFacturesByClient(Long id);
+    List<Facture> retrieveFacturesByStatus(String status);
 
-    List<Facture> retrieveFacturesByClientAndStatus(Long id, String status);
+    List<Facture> retrieveFacturesByStatusAndDate(String status, String date);
 
-    List<Facture> retrieveFacturesByClientAndStatusAndDate(Long id, String status, String date);
-
-    List<Facture> retrieveFacturesByClientAndStatusAndDateAndType(Long id, String status, String date, String type);
 
 
 }

@@ -23,10 +23,10 @@ public class FactureRestController {
         return factureService.retrieveFacture(idFacture);
     }
 
-    @GetMapping("/getFactureByClient/{idClient}")
+    /*@GetMapping("/getFactureByClient/{idClient}")
     public List<Facture> retrieveFactureByClient (@PathVariable("idClient") Long idClient){
-        return factureService.retrieveFacturesByClient(idClient);
-    }
+        return null;
+    }*/
 
     @PostMapping(value="/addFacture", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addFacture (@RequestBody Facture facture){
