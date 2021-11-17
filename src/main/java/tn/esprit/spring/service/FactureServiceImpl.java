@@ -52,9 +52,28 @@ public class FactureServiceImpl implements FactureService{
         factureRepository.deleteById(id);
     }
 
+    @Override
+    public List<Facture> retrieveFacturesInActive() {
+        return null;
+    }
 
     @Override
-    public List<Facture> retrieveFacturesByStatus(String status) {
+    public List<Facture> retrieveFacturesActive() {
+        return null;
+    }
+
+    @Override
+    public List<Facture> retrieveFacturesByPriceRange(double min, double max) {
+        return null;
+    }
+
+    @Override
+    public List<Facture> retrieveFacturesByDateRange(String date1, String date2) {
+        return null;
+    }
+
+    @Override
+    public List<Facture> retrieveFacturesByDate(String date) {
         return null;
     }
 

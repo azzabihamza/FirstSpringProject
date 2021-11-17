@@ -17,9 +17,18 @@ public interface FactureService {
 
     void deleteFacture(Long id);
 
-    List<Facture> retrieveFacturesByStatus(String status);
+    List<Facture> retrieveFacturesInActive();
+
+    List<Facture> retrieveFacturesActive();
+
+    List<Facture> retrieveFacturesByPriceRange(double min, double max);
+
+    List<Facture> retrieveFacturesByDateRange(String date1, String date2);
+
+    List<Facture> retrieveFacturesByDate(String date);
 
     List<Facture> retrieveFacturesByStatusAndDate(String status, String date);
+
 
 
 
