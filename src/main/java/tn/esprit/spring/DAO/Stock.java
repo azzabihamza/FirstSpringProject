@@ -33,6 +33,10 @@ public class Stock implements Serializable {
 		this.produits = produits;
 	}
 
+	public Stock() {
+
+	}
+
 	public Set<Produit> getProduits() {
 		return produits;
 	}

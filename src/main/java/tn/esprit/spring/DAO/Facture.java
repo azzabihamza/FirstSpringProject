@@ -44,6 +44,10 @@ public class Facture implements Serializable {
 		this.detailfactures = detailfactures;
 	}
 
+	public Facture() {
+
+	}
+
 	public Client getClient() {
 		return client;
 	}
