@@ -51,4 +51,10 @@ public interface FactureRepository extends CrudRepository<Facture, Long> {
 
     @Query("select f from Facture f where f.active = true and f.dateFacture between :date1 and :date2 ")
     List<Facture> retrieveAllFactureBetweenDateAndActive(String date1, String date2);
+
+    @Query("select f from Facture f where f.active = false and f.dateFacture between :date1 and :date2 ")
+    List<Facture> retrieveAllFactureBetweenDateAndInActive(String date1, String date2);
+
+    @Query("select f from Facture f where f.montantFacture between :max and :min")
+    List<Facture> retrieveAllFactureByTTCRange(double min, double max);
 }
