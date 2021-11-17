@@ -54,32 +54,41 @@ public class FactureServiceImpl implements FactureService{
 
     @Override
     public List<Facture> retrieveFacturesInActive() {
-        return null;
+        List<Facture> factures = factureRepository.retrieveAllInActiveFacture();
+        for (Facture facture : factures)
+            System.out.println("facture : "+ facture);
+        return factures;
     }
 
     @Override
     public List<Facture> retrieveFacturesActive() {
-        return null;
+        List<Facture> factures = factureRepository.retrieveAllActiveFacture();
+        for (Facture facture : factures)
+            System.out.println("facture : "+ facture);
+        return factures;
     }
 
     @Override
     public List<Facture> retrieveFacturesByPriceRange(double min, double max) {
-        return null;
+        return factureRepository.retrieveAllFactureByTTCRange(min,max);
     }
 
     @Override
     public List<Facture> retrieveFacturesByDateRange(String date1, String date2) {
-        return null;
+        return factureRepository.retirveAllFactureBetweenDate(date1,date2);
     }
 
     @Override
     public List<Facture> retrieveFacturesByDate(String date) {
-        return null;
+        return factureRepository.retrieveAllFactureByDate(date);
     }
 
     @Override
     public List<Facture> retrieveFacturesByStatusAndDate(String status, String date) {
-        return null;
+        if (status.equals("true"))
+            return factureRepository.retrieveAllFactureByDateAndActive(date);
+        else
+            return factureRepository.retrieveAllFactureByDateAndInActive(date);
     }
 
 
