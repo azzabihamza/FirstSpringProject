@@ -28,5 +28,27 @@ public interface FactureRepository extends CrudRepository<Facture, Long> {
     @Query("select f from Facture f where f.idFacture = :idFacture")
     Facture retrieveFactureById(@Param("idFacture") Long idFacture);
 
+    @Query("select f from Facture f order by f.montantRemise asc ")
+    List<Facture> retrieveAllFactureByRemiseAsc();
 
+    @Query("select f from Facture f order by f.montantRemise desc ")
+    List<Facture> retrieveAllFactureByRemiseDesc();
+
+    @Query("select f from Facture f order by f.montantFacture asc ")
+    List<Facture> retrieveAllFactureByTTCAsc();
+
+    @Query("select f from Facture f order by f.montantFacture desc ")
+    List<Facture> retrieveAllFactureByTTCDesc();
+
+    @Query("select f from Facture f where f.dateFacture = :date")
+    List<Facture> retrieveAllFactureByDate(@Param("date") String date);
+
+    @Query("select f from Facture f where f.dateFacture = :date and f.active = true")
+    List<Facture> retrieveAllFactureByDateAndActive(@Param("date") String date);
+
+    @Query("select f from Facture f where f.dateFacture = :date and f.active = false")
+    List<Facture> retrieveAllFactureByDateAndInActive(@Param("date") String date);
+
+    @Query("select f from Facture f where f.active = true and f.dateFacture between :date1 and :date2 ")
+    List<Facture> retrieveAllFactureBetweenDateAndActive(String date1, String date2);
 }
