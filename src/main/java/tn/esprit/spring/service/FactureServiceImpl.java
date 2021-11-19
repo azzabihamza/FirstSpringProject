@@ -2,9 +2,12 @@ package tn.esprit.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tn.esprit.spring.DAO.Client;
-import tn.esprit.spring.DAO.Facture;
+import tn.esprit.spring.DAO.entity.ClientEntity;
+
+import tn.esprit.spring.DAO.entity.FactureEntity;
+import tn.esprit.spring.DAO.mapper.FactureEntityMapper;
 import tn.esprit.spring.repository.FactureRepository;
+import tn.esprit.spring.service.model.Facture;
 
 import java.util.List;
 
@@ -19,41 +22,38 @@ public class FactureServiceImpl implements FactureService{
 
     @Override
     public List<Facture> retrieveAllFactures() {
-        List<Facture> factures = (List<Facture>) factureRepository.findAll();
-        for (Facture facture : factures)
-            System.out.println("facture : "+ facture);
-        return factures;
+        return FactureEntityMapper.mapFactureEntityListToFactureList(factureRepository.findAll());
     }
 
     @Override
     public void cancelFacture(Long id) {
-        Facture facture = factureRepository.findById(id).orElse(null);
-        if (facture != null) {
-            facture.setActive(false);
+        FactureEntity factureEntity = factureRepository.findById(id).orElse(null);
+        if (factureEntity != null) {
+            factureEntity.setActive(false);
         }
-        factureRepository.save(facture);
+        factureRepository.save(factureEntity);
     }
 
     @Override
-    public Facture retrieveFacture(Long id) {
-        Facture facture = factureRepository.findById(id).orElse(null);
-        System.out.println("facture : "+facture);
-        return facture;
+    public FactureEntity retrieveFacture(Long id) {
+        FactureEntity factureEntity = factureRepository.findById(id).orElse(null);
+        System.out.println("facture : "+ factureEntity);
+        return factureEntity;
     }
 
     @Override
-    public void createFacture(Facture facture,Long idClient) {
-        Client client= clientService.retrieveClient(idClient);
+    public void createFacture(FactureEntity factureEntity, Long idClient) {
+        ClientEntity client= clientService.retrieveClient(idClient);
         if (client != null) {
-            facture.setClient(client);
-            factureRepository.save(facture);
+            factureEntity.setClient(client);
+            factureRepository.save(factureEntity);
         }else
             System.out.println("client not found");
     }
 
     @Override
-    public void updateFacture(Facture facture) {
-        factureRepository.save(facture);
+    public void updateFacture(FactureEntity factureEntity) {
+        factureRepository.save(factureEntity);
     }
 
     @Override
@@ -62,38 +62,38 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public List<Facture> retrieveFacturesInActive() {
-        List<Facture> factures = factureRepository.retrieveAllInActiveFacture();
-        for (Facture facture : factures)
-            System.out.println("facture : "+ facture);
-        return factures;
+    public List<FactureEntity> retrieveFacturesInActive() {
+        List<FactureEntity> factureEntities = factureRepository.retrieveAllInActiveFacture();
+        for (FactureEntity factureEntity : factureEntities)
+            System.out.println("facture : "+ factureEntity);
+        return factureEntities;
     }
 
     @Override
-    public List<Facture> retrieveFacturesActive() {
-        List<Facture> factures = factureRepository.retrieveAllActiveFacture();
-        for (Facture facture : factures)
-            System.out.println("facture : "+ facture);
-        return factures;
+    public List<FactureEntity> retrieveFacturesActive() {
+        List<FactureEntity> factureEntities = factureRepository.retrieveAllActiveFacture();
+        for (FactureEntity factureEntity : factureEntities)
+            System.out.println("facture : "+ factureEntity);
+        return factureEntities;
     }
 
     @Override
-    public List<Facture> retrieveFacturesByPriceRange(double min, double max) {
+    public List<FactureEntity> retrieveFacturesByPriceRange(double min, double max) {
         return factureRepository.retrieveAllFactureByTTCRange(min,max);
     }
 
     @Override
-    public List<Facture> retrieveFacturesByDateRange(String date1, String date2) {
+    public List<FactureEntity> retrieveFacturesByDateRange(String date1, String date2) {
         return factureRepository.retirveAllFactureBetweenDate(date1,date2);
     }
 
     @Override
-    public List<Facture> retrieveFacturesByDate(String date) {
+    public List<FactureEntity> retrieveFacturesByDate(String date) {
         return factureRepository.retrieveAllFactureByDate(date);
     }
 
     @Override
-    public List<Facture> retrieveFacturesByStatusAndDate(String status, String date) {
+    public List<FactureEntity> retrieveFacturesByStatusAndDate(String status, String date) {
         if (status.equals("true"))
             return factureRepository.retrieveAllFactureByDateAndActive(date);
         else
@@ -101,7 +101,7 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public Facture assignClientToFacture(Facture facture,Long id) {
+    public FactureEntity assignClientToFacture(FactureEntity factureEntity, Long id) {
         /*Client client= clientService.retrieveClient(id);
         if (client != null) {
             facture.setClient(client);

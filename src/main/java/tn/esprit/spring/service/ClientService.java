@@ -2,27 +2,27 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 
-import tn.esprit.spring.DAO.CategorieClient;
-import tn.esprit.spring.DAO.Client;
+import tn.esprit.spring.DAO.entity.CategorieClient;
+import tn.esprit.spring.DAO.entity.ClientEntity;
 import tn.esprit.spring.DAO.Profession;
 
 public interface ClientService {
 
-	List<Client> retrieveAllClients();
+	List<ClientEntity> retrieveAllClients();
 
-	Client addClient(Client c);
+	ClientEntity addClient(ClientEntity c);
 
-	void deleteClient(Client c);
+	void deleteClient(ClientEntity c);
 
-	Client updateClient(Client c);
+	ClientEntity updateClient(ClientEntity c);
 
-	Client retrieveClient(Long id);
+	ClientEntity retrieveClient(Long id);
 
-	List<Client> retrieveClientsProffession(Profession profession);
+	List<ClientEntity> retrieveClientsProffession(Profession profession);
 
 	int updateClientCategorieByProffession(CategorieClient categorieClient, Profession profession);
 
 	void deleteClientByCategoryAndProffession(CategorieClient categorieClient, Profession profession);
 
-	List<Client> retrieveAllClientsBetweenDate(String date1, String date2);
+	List<ClientEntity> retrieveAllClientsBetweenDate(String date1, String date2);
 }

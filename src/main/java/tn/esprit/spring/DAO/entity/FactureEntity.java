@@ -1,9 +1,10 @@
-package tn.esprit.spring.DAO;
+package tn.esprit.spring.DAO.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import tn.esprit.spring.DAO.DetailFacture;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "Facture")
 @Getter
 @Setter
-public class Facture implements Serializable {
+public class FactureEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +27,12 @@ public class Facture implements Serializable {
 	private boolean active;
 	@JsonBackReference
 	@ManyToOne
-	private Client client;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facture")
+	private ClientEntity client;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "factureEntity")
 	private Set<DetailFacture> detailfactures;
 
-	public Facture(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active,
-			Client client, Set<DetailFacture> detailfactures) {
+	public FactureEntity(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active,
+						 ClientEntity client, Set<DetailFacture> detailfactures) {
 		super();
 		this.idFacture = idFacture;
 		this.montantRemise = montantRemise;
@@ -42,15 +43,15 @@ public class Facture implements Serializable {
 		this.detailfactures = detailfactures;
 	}
 
-	public Facture() {
+	public FactureEntity() {
 
 	}
 
-	public Client getClient() {
+	public ClientEntity getClient() {
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(ClientEntity client) {
 		this.client = client;
 	}
 
