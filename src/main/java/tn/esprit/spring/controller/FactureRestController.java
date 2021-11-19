@@ -64,4 +64,9 @@ public class FactureRestController {
     public List<Facture> getAllFacturesByDateAsc(){
         return factureService.retrieveFacturesByDateAsc();
     }
+
+    @GetMapping("/getFacturesByDateBetween/{date1}/{date2}")
+    public List<Facture> getAllFacturesByDateBetween(@PathVariable("date1") String date1, @PathVariable("date2") String date2){
+        return factureService.retrieveFacturesBetweenDates(date1,date2);
+    }
 }

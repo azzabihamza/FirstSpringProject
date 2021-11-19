@@ -56,6 +56,9 @@ public interface FactureRepository extends CrudRepository<FactureEntity, Long> {
     @Query("select f from FactureEntity f where f.dateFacture = :date and f.active = false")
     List<FactureEntity> retrieveAllFactureByDateAndInActive(@Param("date") String date);
 
+    @Query("select f from FactureEntity f where f.dateFacture between :date1 and :date2 ")
+    List<FactureEntity> retrieveAllFactureBetweenDate(String date1, String date2);
+
     @Query("select f from FactureEntity f where f.active = true and f.dateFacture between :date1 and :date2 ")
     List<FactureEntity> retrieveAllFactureBetweenDateAndActive(String date1, String date2);
 
