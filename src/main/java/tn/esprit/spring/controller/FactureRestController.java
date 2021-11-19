@@ -55,5 +55,8 @@ public class FactureRestController {
         return factureService.retrieveFacturesActive();
     }
 
-
+    @GetMapping("/getFacturesByDateDesc")
+    public List<Facture> getAllFacturesByDateDesc(){
+        return factureService.retrieveFacturesByDateDesc();
+    }
 }

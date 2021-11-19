@@ -100,4 +100,9 @@ public class FactureServiceImpl implements FactureService{
             System.out.println("client not found");*/
         return null;
     }
+
+    @Override
+    public List<Facture> retrieveFacturesByDateDesc() {
+        return FactureEntityMapper.mapFactureEntityListToFactureList(factureRepository.retrieveAllFactureByDateFactureDesc());
+    }
 }

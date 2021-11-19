@@ -22,6 +22,8 @@ public interface FactureService {
 
     List<Facture> retrieveFacturesActive();
 
+    List<Facture> retrieveFacturesByDateDesc();
+
     List<FactureEntity> retrieveFacturesByPriceRange(double min, double max);
 
     List<FactureEntity> retrieveFacturesByDateRange(String date1, String date2);
