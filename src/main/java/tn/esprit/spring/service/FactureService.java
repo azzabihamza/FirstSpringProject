@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 
+import tn.esprit.spring.DAO.Client;
 import tn.esprit.spring.DAO.Facture;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface FactureService {
 
     Facture retrieveFacture(Long id);
 
-    void createFacture(Facture facture);
+    void createFacture(Facture facture, Long idClient);
 
     void updateFacture(Facture facture);
 
@@ -29,7 +30,7 @@ public interface FactureService {
 
     List<Facture> retrieveFacturesByStatusAndDate(String status, String date);
 
-
+    Facture assignClientToFacture(Facture facture,Long id);
 
 
 }

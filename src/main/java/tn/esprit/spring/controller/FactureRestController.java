@@ -36,7 +36,7 @@ public class FactureRestController {
 
     @PostMapping(value="/addFacture", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addFacture (@RequestBody Facture facture){
-        factureService.createFacture(facture);
+        factureService.createFacture(facture, facture.getClient().getIdClient());
     }
 
     @GetMapping("/getInActiveFacture")
@@ -49,5 +49,5 @@ public class FactureRestController {
         return factureService.retrieveFacturesActive();
     }
 
-    
+
 }

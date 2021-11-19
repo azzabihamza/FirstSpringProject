@@ -1,5 +1,7 @@
 package tn.esprit.spring.DAO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -36,6 +38,7 @@ public class Client implements Serializable {
 	private Profession profession;
 	@Enumerated(EnumType.STRING)
 	private CategorieClient categorieClient;
+	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 	private Set<Facture> factures;
 

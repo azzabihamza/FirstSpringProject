@@ -2,6 +2,7 @@ package tn.esprit.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.spring.DAO.Client;
 import tn.esprit.spring.DAO.Facture;
 import tn.esprit.spring.repository.FactureRepository;
 
@@ -12,6 +13,9 @@ public class FactureServiceImpl implements FactureService{
 
     @Autowired
     FactureRepository factureRepository;
+
+    @Autowired
+    ClientService clientService;
 
     @Override
     public List<Facture> retrieveAllFactures() {
@@ -38,8 +42,13 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public void createFacture(Facture facture) {
-        factureRepository.save(facture);
+    public void createFacture(Facture facture,Long idClient) {
+        Client client= clientService.retrieveClient(idClient);
+        if (client != null) {
+            facture.setClient(client);
+            factureRepository.save(facture);
+        }else
+            System.out.println("client not found");
     }
 
     @Override
@@ -91,5 +100,14 @@ public class FactureServiceImpl implements FactureService{
             return factureRepository.retrieveAllFactureByDateAndInActive(date);
     }
 
-
+    @Override
+    public Facture assignClientToFacture(Facture facture,Long id) {
+        /*Client client= clientService.retrieveClient(id);
+        if (client != null) {
+            facture.setClient(client);
+            return facture;
+        }else
+            System.out.println("client not found");*/
+        return null;
+    }
 }
