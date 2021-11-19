@@ -1,5 +1,6 @@
 package tn.esprit.spring.repository;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,6 +12,10 @@ import java.util.List;
 public interface FactureRepository extends CrudRepository<FactureEntity, Long> {
 
     List<FactureEntity> findAll();
+
+    @Modifying
+    @Query("update FactureEntity  set active = :active where idFacture = :id")
+    void updateActive(@Param("id") Long id,@Param("active") boolean active);
 
     @Query("select f from FactureEntity f where f.active = true ")
     List<FactureEntity> retrieveAllActiveFacture();

@@ -30,6 +30,11 @@ public class FactureRestController {
         factureService.updateFacture(factureEntity);
     }
 
+    @PutMapping(value="/changeStatus", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void changeStatus(@RequestBody Facture facture){
+        factureService.cancelFacture(facture);
+    }
+
     @DeleteMapping("/deleteFacture/{idFacture}")
     public void deleteFacture(@PathVariable("idFacture") Long idFacture){
         factureService.deleteFacture(idFacture);

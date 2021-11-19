@@ -8,7 +8,7 @@ import java.util.List;
 public interface FactureService {
     List<Facture> retrieveAllFactures();
 
-    void cancelFacture(Long id);
+    void cancelFacture(Facture facture);
 
     Facture retrieveFacture(Long id);
 
