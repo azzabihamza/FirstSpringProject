@@ -20,7 +20,7 @@ public interface FactureService {
 
     List<Facture> retrieveFacturesInActive();
 
-    List<FactureEntity> retrieveFacturesActive();
+    List<Facture> retrieveFacturesActive();
 
     List<FactureEntity> retrieveFacturesByPriceRange(double min, double max);
 

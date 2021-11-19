@@ -51,7 +51,7 @@ public class FactureRestController {
     }
 
     @GetMapping("/getActiveFacture")
-    public List<FactureEntity> getActiveFacture(){
+    public List<Facture> getActiveFacture(){
         return factureService.retrieveFacturesActive();
     }
 
