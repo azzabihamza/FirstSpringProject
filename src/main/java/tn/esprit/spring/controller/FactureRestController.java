@@ -21,7 +21,7 @@ public class FactureRestController {
     }
 
     @GetMapping("/getFacture/{idFacture}")
-    public FactureEntity retrieveFacture (@PathVariable("idFacture") Long idFacture){
+    public Facture retrieveFacture (@PathVariable("idFacture") Long idFacture){
         return factureService.retrieveFacture(idFacture);
     }
 

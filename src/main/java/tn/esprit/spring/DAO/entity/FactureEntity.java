@@ -3,7 +3,6 @@ package tn.esprit.spring.DAO.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
-import tn.esprit.spring.DAO.DetailFacture;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -29,10 +28,10 @@ public class FactureEntity implements Serializable {
 	@ManyToOne
 	private ClientEntity client;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "factureEntity")
-	private Set<DetailFacture> detailfactures;
+	private Set<DetailFactureEntity> detailfactures;
 
 	public FactureEntity(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active,
-						 ClientEntity client, Set<DetailFacture> detailfactures) {
+						 ClientEntity client, Set<DetailFactureEntity> detailfactures) {
 		super();
 		this.idFacture = idFacture;
 		this.montantRemise = montantRemise;
@@ -55,11 +54,11 @@ public class FactureEntity implements Serializable {
 		this.client = client;
 	}
 
-	public Set<DetailFacture> getDetailfactures() {
+	public Set<DetailFactureEntity> getDetailfactures() {
 		return detailfactures;
 	}
 
-	public void setDetailfactures(Set<DetailFacture> detailfactures) {
+	public void setDetailfactures(Set<DetailFactureEntity> detailfactures) {
 		this.detailfactures = detailfactures;
 	}
 

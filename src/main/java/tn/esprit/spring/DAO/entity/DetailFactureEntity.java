@@ -1,5 +1,6 @@
-package tn.esprit.spring.DAO;
+package tn.esprit.spring.DAO.entity;
 
+import tn.esprit.spring.DAO.Produit;
 import tn.esprit.spring.DAO.entity.FactureEntity;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DetailFacture")
-public class DetailFacture implements Serializable {
+public class DetailFactureEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +24,12 @@ public class DetailFacture implements Serializable {
 	private int pourcentageRemise;
 	private int montantRemise;
 	@ManyToOne
-	Produit produit;
+    Produit produit;
 	@ManyToOne
     FactureEntity factureEntity;
 
-	public DetailFacture(long idDetailFacture, int qte, float prixTotal, int pourcentageRemise, int montantRemise,
-			Produit produit, FactureEntity factureEntity) {
+	public DetailFactureEntity(long idDetailFacture, int qte, float prixTotal, int pourcentageRemise, int montantRemise,
+							   Produit produit, FactureEntity factureEntity) {
 		super();
 		this.idDetailFacture = idDetailFacture;
 		this.qte = qte;
@@ -39,7 +40,7 @@ public class DetailFacture implements Serializable {
 		this.factureEntity = factureEntity;
 	}
 
-	public DetailFacture() {
+	public DetailFactureEntity() {
 
 	}
 

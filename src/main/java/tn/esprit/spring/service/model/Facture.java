@@ -3,7 +3,7 @@ package tn.esprit.spring.service.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import tn.esprit.spring.DAO.DetailFacture;
+import tn.esprit.spring.DAO.entity.DetailFactureEntity;
 
 
 
@@ -20,9 +20,9 @@ public class Facture {
     private Date dateFacture;
     private boolean active;
     private Client client;
-    private Set<DetailFacture> detailfactures;
+    private Set<DetailFactureEntity> detailfactures;
 
-    public Facture(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active, Client client, Set<DetailFacture> detailfactures) {
+    public Facture(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active, Client client, Set<DetailFactureEntity> detailfactures) {
         this.idFacture = idFacture;
         this.montantRemise = montantRemise;
         this.montantFacture = montantFacture;
@@ -83,11 +83,11 @@ public class Facture {
         this.client = client;
     }
 
-    public Set<DetailFacture> getDetailfactures() {
+    public Set<DetailFactureEntity> getDetailfactures() {
         return detailfactures;
     }
 
-    public void setDetailfactures(Set<DetailFacture> detailfactures) {
+    public void setDetailfactures(Set<DetailFactureEntity> detailfactures) {
         this.detailfactures = detailfactures;
     }
 

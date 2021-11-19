@@ -1,17 +1,17 @@
 package tn.esprit.spring.service;
-import tn.esprit.spring.DAO.DetailFacture;
+import tn.esprit.spring.DAO.entity.DetailFactureEntity;
 
 import java.util.List;
 
 public interface DetailFactureService {
-    public void addDetailFacture(DetailFacture detailFacture);
+    public void addDetailFacture(DetailFactureEntity detailFacture);
 
     public void deleteDetailFacture(String id);
 
-    public void updateDetailFacture(DetailFacture detailFacture);
+    public void updateDetailFacture(DetailFactureEntity detailFacture);
 
-    public DetailFacture getDetailFacture(String id);
+    public DetailFactureEntity getDetailFacture(String id);
 
-    public List<DetailFacture> getAllDetailFactures();
+    public List<DetailFactureEntity> getAllDetailFactures();
 
 }

@@ -59,4 +59,7 @@ public interface FactureRepository extends CrudRepository<FactureEntity, Long> {
 
     @Query("select f from FactureEntity f where f.montantFacture between :max and :min")
     List<FactureEntity> retrieveAllFactureByTTCRange(double min, double max);
+
+    @Query("select f from FactureEntity f where f.client.idClient = :idClient")
+    List<FactureEntity> retrieveAllFactureByClient(@Param("idClient") Long idClient);
 }

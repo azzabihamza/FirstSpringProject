@@ -1,5 +1,7 @@
 package tn.esprit.spring.DAO;
 
+import tn.esprit.spring.DAO.entity.DetailFactureEntity;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -32,11 +34,11 @@ public class Produit implements Serializable {
 	@OneToOne
 	private DetailProduit detailProduit;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
-	private Set<DetailFacture> detailFactures;
+	private Set<DetailFactureEntity> detailFactures;
 
 	public Produit(long idProduit, String codeProduit, String libelleProduit, float prixUnitaire, Stock stock,
 			Rayon rayon, Set<Fournisseur> fournisseurs, DetailProduit detailProduit,
-			Set<DetailFacture> detailFactures) {
+			Set<DetailFactureEntity> detailFactures) {
 		super();
 		this.idProduit = idProduit;
 		this.codeProduit = codeProduit;
@@ -49,11 +51,11 @@ public class Produit implements Serializable {
 		this.detailFactures = detailFactures;
 	}
 
-	public Set<DetailFacture> getDetailFactures() {
+	public Set<DetailFactureEntity> getDetailFactures() {
 		return detailFactures;
 	}
 
-	public void setDetailFactures(Set<DetailFacture> detailFactures) {
+	public void setDetailFactures(Set<DetailFactureEntity> detailFactures) {
 		this.detailFactures = detailFactures;
 	}
 

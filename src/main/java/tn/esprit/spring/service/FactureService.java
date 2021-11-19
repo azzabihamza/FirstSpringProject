@@ -10,7 +10,7 @@ public interface FactureService {
 
     void cancelFacture(Long id);
 
-    FactureEntity retrieveFacture(Long id);
+    Facture retrieveFacture(Long id);
 
     void createFacture(FactureEntity factureEntity, Long idClient);
 

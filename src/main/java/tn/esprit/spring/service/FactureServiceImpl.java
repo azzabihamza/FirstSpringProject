@@ -35,10 +35,8 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public FactureEntity retrieveFacture(Long id) {
-        FactureEntity factureEntity = factureRepository.findById(id).orElse(null);
-        System.out.println("facture : "+ factureEntity);
-        return factureEntity;
+    public Facture retrieveFacture(Long id) {
+        return FactureEntityMapper.mapFactureEntityToFacture(factureRepository.retrieveFactureById(id));
     }
 
     @Override

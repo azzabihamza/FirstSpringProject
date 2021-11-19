@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FactureEntityMapper {
-   /* public static Facture mapFactureEntityToFacture(FactureEntity factureEntity) {
-        return new Facture(factureEntity.getIdFacture(), factureEntity.getMontantRemise(),factureEntity.getMontantFacture(),factureEntity.getDateFacture(),factureEntity.isActive(),factureEntity.getClient(),factureEntity.getDetailfactures());
-    }*/
+   public static Facture mapFactureEntityToFacture(FactureEntity factureEntity) {
+        return new Facture(factureEntity.getIdFacture(), factureEntity.getMontantRemise(),factureEntity.getMontantFacture(),factureEntity.getDateFacture(),factureEntity.isActive(),getClient(factureEntity.getClient()) ,factureEntity.getDetailfactures());
+    }
 
     public static List<Facture> mapFactureEntityListToFactureList(List<FactureEntity> factureEntityList) {
        List<Facture> factures = new ArrayList<>();
