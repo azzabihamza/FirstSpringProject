@@ -58,11 +58,8 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public List<FactureEntity> retrieveFacturesInActive() {
-        List<FactureEntity> factureEntities = factureRepository.retrieveAllInActiveFacture();
-        for (FactureEntity factureEntity : factureEntities)
-            System.out.println("facture : "+ factureEntity);
-        return factureEntities;
+    public List<Facture> retrieveFacturesInActive() {
+        return FactureEntityMapper.mapFactureEntityListToFactureList(factureRepository.retrieveAllInActiveFacture());
     }
 
     @Override

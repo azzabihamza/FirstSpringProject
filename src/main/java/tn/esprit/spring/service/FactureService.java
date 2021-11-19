@@ -18,7 +18,7 @@ public interface FactureService {
 
     void deleteFacture(Long id);
 
-    List<FactureEntity> retrieveFacturesInActive();
+    List<Facture> retrieveFacturesInActive();
 
     List<FactureEntity> retrieveFacturesActive();
 
