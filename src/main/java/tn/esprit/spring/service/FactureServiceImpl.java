@@ -40,9 +40,10 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public void createFacture(FactureEntity factureEntity, Long idClient) {
-        ClientEntity client= clientService.retrieveClient(idClient);
+    public void createFacture(Facture facture) {
+        ClientEntity client= clientService.retrieveClient(facture.getClient().getIdClient());
         if (client != null) {
+            FactureEntity factureEntity = FactureEntityMapper.mapFactureToFactureEntity(facture);
             factureEntity.setClient(client);
             factureRepository.save(factureEntity);
         }else

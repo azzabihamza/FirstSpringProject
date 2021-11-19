@@ -36,8 +36,8 @@ public class FactureRestController {
     }
 
     @PostMapping(value="/addFacture", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addFacture (@RequestBody FactureEntity factureEntity){
-        factureService.createFacture(factureEntity, factureEntity.getClient().getIdClient());
+    public void addFacture (@RequestBody Facture facture){
+        factureService.createFacture(facture);
     }
 
     @GetMapping("/getInActiveFacture")

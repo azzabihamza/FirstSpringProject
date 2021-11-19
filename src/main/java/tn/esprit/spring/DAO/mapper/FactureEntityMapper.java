@@ -4,6 +4,7 @@ package tn.esprit.spring.DAO.mapper;
 import tn.esprit.spring.DAO.entity.ClientEntity;
 import tn.esprit.spring.DAO.entity.FactureEntity;
 import tn.esprit.spring.service.model.CategorieClient;
+
 import tn.esprit.spring.service.model.Client;
 import tn.esprit.spring.service.model.Facture;
 import tn.esprit.spring.service.model.Profession;
@@ -24,6 +25,14 @@ public class FactureEntityMapper {
         return factures;
 
     }
+
+    public static FactureEntity mapFactureToFactureEntity(Facture facture) {
+        return new FactureEntity(facture.getIdFacture(), facture.getMontantRemise(),facture.getMontantFacture(),facture.getDateFacture(),facture.isActive(),facture.getDetailfactures());
+    }
+
+    /*private static ClientEntity getClientEntity(Client client) {
+       return new ClientEntity(client.getIdClient(),client.getNom(), client.getPrenom(), client.getEmail(), client.getPassword() ,client.getDateNaissance(),tn.esprit.spring.DAO.Profession.valueOf(client.getProfession().toString())  , tn.esprit.spring.DAO.entity.CategorieClient.valueOf(client.getCategorieClient().toString()) );
+    }*/
 
     private static Client getClient(ClientEntity clientEntity) {
         return new Client(clientEntity.getIdClient(),clientEntity.getNom(), clientEntity.getPrenom(), clientEntity.getEmail(), clientEntity.getPassword() ,clientEntity.getDateNaissance(), Profession.valueOf(clientEntity.getProfession().toString()) , CategorieClient.valueOf(clientEntity.getCategorieClient().toString()));

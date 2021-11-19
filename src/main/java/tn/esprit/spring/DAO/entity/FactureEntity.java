@@ -42,6 +42,15 @@ public class FactureEntity implements Serializable {
 		this.detailfactures = detailfactures;
 	}
 
+	public FactureEntity(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active, Set<DetailFactureEntity> detailfactures) {
+		this.idFacture = idFacture;
+		this.montantRemise = montantRemise;
+		this.montantFacture = montantFacture;
+		this.dateFacture = dateFacture;
+		this.active = active;
+		this.detailfactures = detailfactures;
+	}
+
 	public FactureEntity() {
 
 	}
