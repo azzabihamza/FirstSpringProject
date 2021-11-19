@@ -105,4 +105,9 @@ public class FactureServiceImpl implements FactureService{
     public List<Facture> retrieveFacturesByDateDesc() {
         return FactureEntityMapper.mapFactureEntityListToFactureList(factureRepository.retrieveAllFactureByDateFactureDesc());
     }
+
+    @Override
+    public List<Facture> retrieveFacturesByDateAsc() {
+        return FactureEntityMapper.mapFactureEntityListToFactureList(factureRepository.retrieveAllFactureByDateFactureAsc());
+    }
 }
