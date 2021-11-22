@@ -14,7 +14,7 @@ public interface FactureService {
 
     void createFacture(Facture facture);
 
-    void updateFacture(FactureEntity factureEntity);
+    void updateFacture(Facture facture);
 
     void deleteFacture(Long id);
 

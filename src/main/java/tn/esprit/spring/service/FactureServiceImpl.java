@@ -48,8 +48,8 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public void updateFacture(FactureEntity factureEntity) {
-        factureRepository.save(factureEntity);
+    public void updateFacture(Facture facture) {
+        factureRepository.save(FactureEntityMapper.mapFactureToFactureEntity(facture));
     }
 
     @Override

@@ -26,8 +26,8 @@ public class FactureRestController {
     }
 
     @PutMapping(value = "/updateFacture", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateFacture(@RequestBody FactureEntity factureEntity){
-        factureService.updateFacture(factureEntity);
+    public void updateFacture(@RequestBody Facture facture){
+        factureService.updateFacture(facture);
     }
 
     @PutMapping(value="/changeStatus", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -69,4 +69,6 @@ public class FactureRestController {
     public List<Facture> getAllFacturesByDateBetween(@PathVariable("date1") String date1, @PathVariable("date2") String date2){
         return factureService.retrieveFacturesBetweenDates(date1,date2);
     }
+
+
 }
