@@ -21,8 +21,8 @@ public class DetailFactureServiceImpl implements DetailFactureService {
     }
 
     @Override
-    public void deleteDetailFacture(String id) {
-
+    public void deleteDetailFacture(Long id) {
+        detailFactureRepository.deleteById(id);
     }
 
     @Override
