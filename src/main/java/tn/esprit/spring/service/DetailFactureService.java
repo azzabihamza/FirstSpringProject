@@ -9,7 +9,7 @@ public interface DetailFactureService {
 
     public void deleteDetailFacture(Long id);
 
-    public void updateDetailFacture(DetailFactureEntity detailFacture);
+    public void updateDetailFacture(DetailFacture detailFacture);
 
     public DetailFactureEntity getDetailFacture(String id);
 

@@ -26,8 +26,8 @@ public class DetailFactureServiceImpl implements DetailFactureService {
     }
 
     @Override
-    public void updateDetailFacture(DetailFactureEntity detailFacture) {
-
+    public void updateDetailFacture(DetailFacture detailFacture) {
+        detailFactureRepository.save(DetailFactureEntityMapper.mapDetailFactureToDetailFactureEntity(detailFacture));
     }
 
     @Override

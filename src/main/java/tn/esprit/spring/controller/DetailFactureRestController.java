@@ -23,5 +23,10 @@ public class DetailFactureRestController {
         detailFactureService.deleteDetailFacture(id);
     }
 
+    @PutMapping(value="/updateDetailFacture", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateDetailFacture(@RequestBody DetailFacture detailFacture) {
+        detailFactureService.updateDetailFacture(detailFacture);
+    }
+
 
 }
