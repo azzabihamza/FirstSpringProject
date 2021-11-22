@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.service.DetailFactureService;
 import tn.esprit.spring.service.model.DetailFacture;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class DetailFactureRestController {
@@ -28,5 +30,13 @@ public class DetailFactureRestController {
         detailFactureService.updateDetailFacture(detailFacture);
     }
 
+    @GetMapping(value="/getDetailFacture/{id}")
+    public DetailFacture getDetailFacture(@PathVariable("id") Long id) {
+        return detailFactureService.getDetailFacture(id);
+    }
 
+    @GetMapping(value="/getAllDetailFacture")
+    public List<DetailFacture> getAllDetailFacture() {
+        return detailFactureService.getAllDetailFactures();
+    }
 }

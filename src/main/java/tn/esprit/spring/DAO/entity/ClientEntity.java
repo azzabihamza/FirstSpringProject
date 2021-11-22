@@ -7,18 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Client")
@@ -40,7 +29,7 @@ public class ClientEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private CategorieClient categorieClient;
 	@JsonBackReference
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client",fetch = FetchType.EAGER)
 	private Set<FactureEntity> factureEntities;
 
 	public ClientEntity(Long idClient, String nom, String prenom, String email, String password, Date dateNaissance,

@@ -13,6 +13,6 @@ public interface DetailFactureService {
 
     public DetailFacture getDetailFacture(Long id);
 
-    public List<DetailFactureEntity> getAllDetailFactures();
+    public List<DetailFacture> getAllDetailFactures();
 
 }

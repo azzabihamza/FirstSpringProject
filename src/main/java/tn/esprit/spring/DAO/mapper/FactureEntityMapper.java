@@ -3,14 +3,12 @@ package tn.esprit.spring.DAO.mapper;
 
 import tn.esprit.spring.DAO.entity.ClientEntity;
 import tn.esprit.spring.DAO.entity.FactureEntity;
-import tn.esprit.spring.service.model.CategorieClient;
-
-import tn.esprit.spring.service.model.Client;
-import tn.esprit.spring.service.model.Facture;
-import tn.esprit.spring.service.model.Profession;
+import tn.esprit.spring.service.model.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FactureEntityMapper {
    public static Facture mapFactureEntityToFacture(FactureEntity factureEntity) {
@@ -37,4 +35,9 @@ public class FactureEntityMapper {
     private static Client getClient(ClientEntity clientEntity) {
         return new Client(clientEntity.getIdClient(),clientEntity.getNom(), clientEntity.getPrenom(), clientEntity.getEmail(), clientEntity.getPassword() ,clientEntity.getDateNaissance(), Profession.valueOf(clientEntity.getProfession().toString()) , CategorieClient.valueOf(clientEntity.getCategorieClient().toString()));
     }
+    
+    /*private static Set<DetailFacture> getDetailFactures (Set<DetailFacture> detailFacturesEntity){
+        Set<DetailFacture> detailFactures = new HashSet<>();
+        for()
+    }*/
 }

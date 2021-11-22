@@ -36,7 +36,7 @@ public class DetailFactureServiceImpl implements DetailFactureService {
     }
 
     @Override
-    public List<DetailFactureEntity> getAllDetailFactures() {
-        return null;
+    public List<DetailFacture> getAllDetailFactures() {
+        return DetailFactureEntityMapper.mapListDetailFactureEntityToDetailFactureList(detailFactureRepository.findAll());
     }
 }
