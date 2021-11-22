@@ -11,7 +11,7 @@ public interface DetailFactureService {
 
     public void updateDetailFacture(DetailFacture detailFacture);
 
-    public DetailFactureEntity getDetailFacture(String id);
+    public DetailFacture getDetailFacture(Long id);
 
     public List<DetailFactureEntity> getAllDetailFactures();
 

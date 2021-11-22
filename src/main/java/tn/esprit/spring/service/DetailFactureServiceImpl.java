@@ -31,8 +31,8 @@ public class DetailFactureServiceImpl implements DetailFactureService {
     }
 
     @Override
-    public DetailFactureEntity getDetailFacture(String id) {
-        return null;
+    public DetailFacture getDetailFacture(Long id) {
+        return DetailFactureEntityMapper.mapDetailFactureEntityToDetailFacture(detailFactureRepository.retieveDetailFactureById(id));
     }
 
     @Override
