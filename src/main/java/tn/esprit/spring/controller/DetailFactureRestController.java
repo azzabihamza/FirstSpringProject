@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.service.DetailFactureService;
-import tn.esprit.spring.service.model.DetailFacture;
+import tn.esprit.spring.DAO.model.DetailFacture;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package tn.esprit.spring.DAO.mapper;
 
 import tn.esprit.spring.DAO.entity.DetailFactureEntity;
-import tn.esprit.spring.service.model.DetailFacture;
+import tn.esprit.spring.DAO.model.DetailFacture;
 
 import java.util.ArrayList;
 import java.util.List;

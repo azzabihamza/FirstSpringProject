@@ -7,8 +7,10 @@ import tn.esprit.spring.DAO.entity.ClientEntity;
 import tn.esprit.spring.DAO.entity.FactureEntity;
 import tn.esprit.spring.DAO.mapper.FactureEntityMapper;
 import tn.esprit.spring.repository.FactureRepository;
-import tn.esprit.spring.service.model.Facture;
+import tn.esprit.spring.DAO.model.Facture;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,9 +41,12 @@ public class FactureServiceImpl implements FactureService{
     @Override
     public void createFacture(Facture facture) {
         ClientEntity client= clientService.retrieveClient(facture.getClient().getIdClient());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         if (client != null) {
             FactureEntity factureEntity = FactureEntityMapper.mapFactureToFactureEntity(facture);
             factureEntity.setClient(client);
+            factureEntity.setDateFacture(new Date(System.currentTimeMillis()));
+            factureEntity.setActive(true);
             factureRepository.save(factureEntity);
         }else
             System.out.println("client not found");

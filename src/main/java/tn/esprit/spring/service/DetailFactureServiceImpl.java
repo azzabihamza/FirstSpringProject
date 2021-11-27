@@ -2,10 +2,10 @@ package tn.esprit.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tn.esprit.spring.DAO.entity.DetailFactureEntity;
 import tn.esprit.spring.DAO.mapper.DetailFactureEntityMapper;
+import tn.esprit.spring.DAO.model.Facture;
 import tn.esprit.spring.repository.DetailFactureRepository;
-import tn.esprit.spring.service.model.DetailFacture;
+import tn.esprit.spring.DAO.model.DetailFacture;
 
 import java.util.List;
 
@@ -15,9 +15,16 @@ public class DetailFactureServiceImpl implements DetailFactureService {
     @Autowired
     DetailFactureRepository detailFactureRepository;
 
+    @Autowired
+    FactureService factureService;
+
     @Override
     public void addDetailFacture(DetailFacture detailFacture) {
-        detailFactureRepository.save(DetailFactureEntityMapper.mapDetailFactureToDetailFactureEntity(detailFacture));
+        Facture facture = factureService.retrieveFacture(detailFacture.getFacture().getIdFacture());
+        if (facture != null) {
+            detailFacture.setFacture(facture);
+            detailFactureRepository.save(DetailFactureEntityMapper.mapDetailFactureToDetailFactureEntity(detailFacture));
+        }
     }
 
     @Override

@@ -1,6 +1,5 @@
 package tn.esprit.spring.service;
-import tn.esprit.spring.DAO.entity.DetailFactureEntity;
-import tn.esprit.spring.service.model.DetailFacture;
+import tn.esprit.spring.DAO.model.DetailFacture;
 
 import java.util.List;
 

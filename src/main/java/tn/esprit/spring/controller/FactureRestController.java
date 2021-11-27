@@ -3,8 +3,7 @@ package tn.esprit.spring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.spring.DAO.entity.FactureEntity;
-import tn.esprit.spring.service.model.Facture;
+import tn.esprit.spring.DAO.model.Facture;
 import tn.esprit.spring.service.FactureService;
 
 import java.util.List;

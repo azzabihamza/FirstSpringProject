@@ -3,12 +3,10 @@ package tn.esprit.spring.DAO.mapper;
 
 import tn.esprit.spring.DAO.entity.ClientEntity;
 import tn.esprit.spring.DAO.entity.FactureEntity;
-import tn.esprit.spring.service.model.*;
+import tn.esprit.spring.DAO.model.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class FactureEntityMapper {
    public static Facture mapFactureEntityToFacture(FactureEntity factureEntity) {

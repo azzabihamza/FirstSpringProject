@@ -1,4 +1,4 @@
-package tn.esprit.spring.service.model;
+package tn.esprit.spring.DAO.model;
 
 import lombok.Getter;
 import lombok.Setter;
