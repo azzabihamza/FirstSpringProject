@@ -7,18 +7,16 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.test.annotation.Rollback;
-import tn.esprit.spring.DAO.CategorieClient;
-import tn.esprit.spring.DAO.Client;
+import tn.esprit.spring.DAO.entity.CategorieClient;
+import tn.esprit.spring.DAO.entity.ClientEntity;
 import tn.esprit.spring.DAO.Profession;
 import tn.esprit.spring.repository.ClientRepository;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-class ClientServiceImplTest {
+class ClientEntityServiceImplTest {
 
     @Autowired
     ClientRepository clientRepository;
@@ -27,8 +25,8 @@ class ClientServiceImplTest {
 
     @Test
     void retrieveAllClients() {
-        List<Client> clientsList = (List<Client>) clientRepository.findAll();
-        for (Client client: clientsList ) {
+        List<ClientEntity> clientsList = (List<ClientEntity>) clientRepository.findAll();
+        for (ClientEntity client: clientsList ) {
             System.out.println(client.toString());
         }
     }
@@ -36,24 +34,24 @@ class ClientServiceImplTest {
     @Test
     @Rollback(false)
     void addClient() {
-        Client client = new Client(null,"Azzabi","Hamza","hamza.azzabitest@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
+        ClientEntity client = new ClientEntity(null,"Azzabi","Hamza","hamza.azzabitest@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
         System.out.println(client.toString());
         clientRepository.save(client);
     }
 
     @Test
     void deleteClient() {
-        Client client = new Client(1L,"Azzabi","Hamza","hamza.azzabi@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
+        ClientEntity client = new ClientEntity(1L,"Azzabi","Hamza","hamza.azzabi@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
         clientRepository.delete(client);
     }
 
     @Test
     void updateClient() {
         String nom = "azzabiUpdate";
-        Client client = clientRepository.findById(1L).orElse(null);
+        ClientEntity client = clientRepository.findById(1L).orElse(null);
         client.setNom(nom);
         clientRepository.save(client);
-        Client clientUpdated = clientRepository.findById(1L).orElse(null);
+        ClientEntity clientUpdated = clientRepository.findById(1L).orElse(null);
         System.out.println(clientUpdated.toString());
         assertThat(clientUpdated.getNom()).isEqualTo(nom);
 
@@ -61,7 +59,7 @@ class ClientServiceImplTest {
 
     @Test
     void retrieveClient() {
-        Client client =  clientRepository.findById(1L).orElse(null);
+        ClientEntity client =  clientRepository.findById(1L).orElse(null);
         System.out.println("Client :" + client);
     }
 }

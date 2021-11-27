@@ -1,5 +1,8 @@
 package tn.esprit.spring.DAO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import tn.esprit.spring.DAO.entity.ProduitEntity;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -20,10 +23,11 @@ public class Rayon implements Serializable {
 	private long idRayon;
 	private String codeRayon;
 	private String libelleRayon;
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rayon")
-	private Set<Produit> produits;
+	private Set<ProduitEntity> produits;
 
-	public Rayon(long idRayon, String codeRayon, String libelleRayon, Set<Produit> produits) {
+	public Rayon(long idRayon, String codeRayon, String libelleRayon, Set<ProduitEntity> produits) {
 		super();
 		this.idRayon = idRayon;
 		this.codeRayon = codeRayon;
@@ -31,11 +35,15 @@ public class Rayon implements Serializable {
 		this.produits = produits;
 	}
 
-	public Set<Produit> getProduits() {
+	public Rayon() {
+
+	}
+
+	public Set<ProduitEntity> getProduits() {
 		return produits;
 	}
 
-	public void setProduits(Set<Produit> produits) {
+	public void setProduits(Set<ProduitEntity> produits) {
 		this.produits = produits;
 	}
 

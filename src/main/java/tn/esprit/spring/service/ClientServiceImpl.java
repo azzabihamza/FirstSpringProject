@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.spring.DAO.CategorieClient;
-import tn.esprit.spring.DAO.Client;
+import tn.esprit.spring.DAO.entity.CategorieClient;
+import tn.esprit.spring.DAO.entity.ClientEntity;
 import tn.esprit.spring.DAO.Profession;
 import tn.esprit.spring.repository.ClientRepository;
 
@@ -18,41 +18,41 @@ public class ClientServiceImpl implements ClientService {
 	ClientRepository clientRepository;
 
 	@Override
-	public List<Client> retrieveAllClients() {
-		List<Client> clients = (List<Client>) clientRepository.findAll();
-		for (Client client : clients) {
+	public List<ClientEntity> retrieveAllClients() {
+		List<ClientEntity> clients = (List<ClientEntity>) clientRepository.findAll();
+		for (ClientEntity client : clients) {
 			System.out.println("Client :" + client);
 		}
 		return clients;
 	}
 
 	@Override
-	public Client addClient(Client c) {
+	public ClientEntity addClient(ClientEntity c) {
 		clientRepository.save(c);
 		return c;
 	}
 
 	@Override
 	@Transactional
-	public void deleteClient(Client c) {
+	public void deleteClient(ClientEntity c) {
 		clientRepository.delete(c);
 	}
 
 	@Override
 	@Transactional
-	public Client updateClient(Client c) {
+	public ClientEntity updateClient(ClientEntity c) {
 		return clientRepository.save(c);
 	}
 
 	@Override
-	public Client retrieveClient(Long id) {
-		Client client = clientRepository.findById(id).orElse(null);
+	public ClientEntity retrieveClient(Long id) {
+		ClientEntity client = clientRepository.findById(id).orElse(null);
 		System.out.println("Client :" + client);
 		return client;
 	}
 
 	@Override
-	public List<Client> retrieveClientsProffession(Profession profession) {
+	public List<ClientEntity> retrieveClientsProffession(Profession profession) {
 		return clientRepository.retrieveClientsByProffession(profession);
 	}
 
@@ -67,7 +67,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public List<Client> retrieveAllClientsBetweenDate(String date1, String date2) {
+	public List<ClientEntity> retrieveAllClientsBetweenDate(String date1, String date2) {
 		return clientRepository.retrieveClientsBetweenDates(date1, date2);
 	}
 }

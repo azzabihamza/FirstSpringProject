@@ -1,4 +1,6 @@
-package tn.esprit.spring.DAO;
+package tn.esprit.spring.DAO.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,7 +18,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "DetailProduit")
-public class DetailProduit implements Serializable {
+public class DetailProduitEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +29,12 @@ public class DetailProduit implements Serializable {
 	private Date dateDerniereModification;
 	@Enumerated(EnumType.STRING)
 	private CategorieProduit categorieProduit;
-	@OneToOne(mappedBy = "detailProduit")
-	private Produit produit;
+	@JsonIgnore
+	@OneToOne(mappedBy = "detailProduitEntity")
+	private ProduitEntity produit;
 
-	public DetailProduit(long idDetailProduit, Date dateCreation, Date dateDerniereModification,
-			CategorieProduit categorieProduit, Produit produit) {
+	public DetailProduitEntity(long idDetailProduit, Date dateCreation, Date dateDerniereModification,
+							   CategorieProduit categorieProduit, ProduitEntity produit) {
 		super();
 		this.idDetailProduit = idDetailProduit;
 		this.dateCreation = dateCreation;
@@ -40,11 +43,15 @@ public class DetailProduit implements Serializable {
 		this.produit = produit;
 	}
 
-	public Produit getProduit() {
+	public DetailProduitEntity() {
+
+	}
+
+	public ProduitEntity getProduit() {
 		return produit;
 	}
 
-	public void setProduit(Produit produit) {
+	public void setProduit(ProduitEntity produit) {
 		this.produit = produit;
 	}
 

@@ -1,25 +1,17 @@
-package tn.esprit.spring.DAO;
+package tn.esprit.spring.DAO.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import tn.esprit.spring.DAO.Profession;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Client")
-public class Client implements Serializable {
+public class ClientEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +28,12 @@ public class Client implements Serializable {
 	private Profession profession;
 	@Enumerated(EnumType.STRING)
 	private CategorieClient categorieClient;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-	private Set<Facture> factures;
+	@JsonBackReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client",fetch = FetchType.EAGER)
+	private Set<FactureEntity> factureEntities;
 
-	public Client(Long idClient, String nom, String prenom, String email, String password, Date dateNaissance,
-			Profession profession, CategorieClient categorieClient, Set<Facture> factures) {
+	public ClientEntity(Long idClient, String nom, String prenom, String email, String password, Date dateNaissance,
+						Profession profession, CategorieClient categorieClient, Set<FactureEntity> factureEntities) {
 		super();
 		this.idClient = idClient;
 		this.nom = nom;
@@ -50,10 +43,10 @@ public class Client implements Serializable {
 		this.dateNaissance = dateNaissance;
 		this.profession = profession;
 		this.categorieClient = categorieClient;
-		this.factures = factures;
+		this.factureEntities = factureEntities;
 	}
 
-	public Client() {
+	public ClientEntity() {
 
 	}
 
@@ -85,12 +78,12 @@ public class Client implements Serializable {
 		this.categorieClient = categorieClient;
 	}
 
-	public Set<Facture> getFactures() {
-		return factures;
+	public Set<FactureEntity> getFactures() {
+		return factureEntities;
 	}
 
-	public void setFactures(Set<Facture> factures) {
-		this.factures = factures;
+	public void setFactures(Set<FactureEntity> factureEntities) {
+		this.factureEntities = factureEntities;
 	}
 
 	public Long getIdClient() {
@@ -152,7 +145,7 @@ public class Client implements Serializable {
 				", dateNaissance=" + dateNaissance +
 				", profession=" + profession +
 				", categorieClient=" + categorieClient +
-				", factures=" + factures +
+				", factures=" + factureEntities +
 				'}';
 	}
 }

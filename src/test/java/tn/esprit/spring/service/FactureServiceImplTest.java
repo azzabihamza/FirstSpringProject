@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import tn.esprit.spring.DAO.Facture;
+import tn.esprit.spring.DAO.entity.FactureEntity;
 import tn.esprit.spring.repository.FactureRepository;
 
 import java.util.List;
@@ -19,9 +19,9 @@ class FactureServiceImplTest {
 
     @Test
     void retrieveAllFactures() {
-        List<Facture> factures = (List<Facture>) factureRepository.findAll();
-        for (Facture facture : factures)
-            System.out.println(facture);
+        List<FactureEntity> factureEntities = (List<FactureEntity>) factureRepository.findAll();
+        for (FactureEntity factureEntity : factureEntities)
+            System.out.println(factureEntity);
     }
 
     @Test

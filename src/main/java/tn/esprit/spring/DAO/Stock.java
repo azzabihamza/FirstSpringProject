@@ -1,5 +1,8 @@
 package tn.esprit.spring.DAO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import tn.esprit.spring.DAO.entity.ProduitEntity;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -21,10 +24,11 @@ public class Stock implements Serializable {
 	private int qteStock;
 	private int qteMin;
 	private String libelleStock;
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "stock")
-	private Set<Produit> produits;
+	private Set<ProduitEntity> produits;
 
-	public Stock(long idStock, int qteStock, int qteMin, String libelleStock, Set<Produit> produits) {
+	public Stock(long idStock, int qteStock, int qteMin, String libelleStock, Set<ProduitEntity> produits) {
 		super();
 		this.idStock = idStock;
 		this.qteStock = qteStock;
@@ -37,11 +41,11 @@ public class Stock implements Serializable {
 
 	}
 
-	public Set<Produit> getProduits() {
+	public Set<ProduitEntity> getProduits() {
 		return produits;
 	}
 
-	public void setProduits(Set<Produit> produits) {
+	public void setProduits(Set<ProduitEntity> produits) {
 		this.produits = produits;
 	}
 

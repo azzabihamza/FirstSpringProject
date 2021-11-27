@@ -1,13 +1,14 @@
 package tn.esprit.spring.service;
 
-import tn.esprit.spring.DAO.Facture;
+import tn.esprit.spring.DAO.entity.FactureEntity;
+import tn.esprit.spring.DAO.model.Facture;
 
 import java.util.List;
 
 public interface FactureService {
     List<Facture> retrieveAllFactures();
 
-    void cancelFacture(Long id);
+    void cancelFacture(Facture facture);
 
     Facture retrieveFacture(Long id);
 
@@ -21,15 +22,21 @@ public interface FactureService {
 
     List<Facture> retrieveFacturesActive();
 
-    List<Facture> retrieveFacturesByPriceRange(double min, double max);
+    List<Facture> retrieveFacturesByDateDesc();
 
-    List<Facture> retrieveFacturesByDateRange(String date1, String date2);
+    List<Facture> retrieveFacturesByDateAsc();
 
-    List<Facture> retrieveFacturesByDate(String date);
+    List<Facture> retrieveFacturesBetweenDates(String date1, String date2);
 
-    List<Facture> retrieveFacturesByStatusAndDate(String status, String date);
+    List<FactureEntity> retrieveFacturesByPriceRange(double min, double max);
 
+    List<FactureEntity> retrieveFacturesByDateRange(String date1, String date2);
 
+    List<FactureEntity> retrieveFacturesByDate(String date);
+
+    List<FactureEntity> retrieveFacturesByStatusAndDate(String status, String date);
+
+    FactureEntity assignClientToFacture(FactureEntity factureEntity, Long id);
 
 
 }
