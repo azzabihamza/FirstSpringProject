@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.spring.DAO.DetailProduit;
-import tn.esprit.spring.DAO.Produit;
+import tn.esprit.spring.DAO.entity.DetailProduitEntity;
+import tn.esprit.spring.DAO.entity.ProduitEntity;
 import tn.esprit.spring.repository.DetailProduitRepository;
 import tn.esprit.spring.repository.ProduitRepository;
 import tn.esprit.spring.repository.RayonRepository;
@@ -25,42 +25,70 @@ public class ProduitServiceImpl implements ProduitService {
 	@Autowired
     StockRepository stockRepository;
 	@Autowired
-	DetailProduitRepository detailProduitRepository;
+	DetailProduitService detailProduitService;
 
 	@Override
-	public List<Produit> retrieveAllProduits() {
-		List<Produit> produits= (List<Produit>) produitRepository.findAll();
-		for (Produit produit: produits)
+	public List<ProduitEntity> retrieveAllProduits() {
+		List<ProduitEntity> produits= (List<ProduitEntity>) produitRepository.findAll();
+		for (ProduitEntity produit: produits)
 			System.out.println("produit : " + produit);
 		return produits;
 	}
 
 	@Override
 	@Transactional
-	public Produit addProduit(Produit p, Long idRayon, Long idStock) {
-		p.setRayon(rayonRepository.findById(idRayon).orElse(null));
-		p.setStock(stockRepository.findById(idStock).orElse(null));
-		DetailProduit detailProduit= saveDetailProduit(p);
-		p.setDetailProduit(detailProduit);
+	public void addProduit(ProduitEntity p) {
+		p.setRayon(rayonRepository.findById(p.getRayon().getIdRayon()).orElse(null));
+		p.setStock(stockRepository.findById(p.getStock().getIdStock()).orElse(null));
+		p.setDetailProduitEntity(saveDetailProduit(p));
 		produitRepository.save(p);
-		return p;
 	}
 
-	private DetailProduit saveDetailProduit(Produit p) {
-		if (p.getDetailProduit().getDateCreation() == null){
-			p.getDetailProduit().setDateCreation(new java.sql.Date(new java.util.Date().getTime()));
-			p.getDetailProduit().setDateDerniereModification(new Date());
+	private DetailProduitEntity saveDetailProduit(ProduitEntity p) {
+		if (p.getDetailProduitEntity().getDateCreation() == null){
+			p.getDetailProduitEntity().setDateCreation(new java.sql.Date(new java.util.Date().getTime()));
+			p.getDetailProduitEntity().setDateDerniereModification(new java.sql.Date(new java.util.Date().getTime()));
 		}else {
-			p.getDetailProduit().setDateDerniereModification(new Date());
+			p.getDetailProduitEntity().setDateDerniereModification(new java.sql.Date(new java.util.Date().getTime()));
 		}
-		DetailProduit dp = detailProduitRepository.save(p.getDetailProduit());
-		return dp;
+		detailProduitService.addDetailProduit(p.getDetailProduitEntity());
+
+		return p.getDetailProduitEntity();
 	}
 
 	@Override
-	public Produit retrieveProduit(Long id) {
-		Produit produit = produitRepository.findById(id).orElse(null);
+	public ProduitEntity retrieveProduit(Long id) {
+		ProduitEntity produit = produitRepository.findById(id).orElse(null);
 		System.out.println("produit : "+ produit);
 		return produit;
+	}
+
+	@Override
+	public void deleteProduit(Long id) {
+		ProduitEntity produit = produitRepository.findById(id).orElse(null);
+		if(produit != null) {
+			detailProduitService.deleteDetailProduit(produit.getDetailProduitEntity().getIdDetailProduit());
+			produitRepository.delete(produit);
+		}
+	}
+
+	@Override
+	public void updateProduit(ProduitEntity p) {
+        produitRepository.save(p) ;
+	}
+
+	@Override
+	public List<ProduitEntity> retrieveProduitsByRayon(Long idRayon) {
+	    return null;
+	}
+
+	@Override
+	public List<ProduitEntity> retrieveProduitsByStock(Long idStock) {
+		return null;
+	}
+
+	@Override
+	public List<ProduitEntity> retrieveProduitsByRayonAndStock(Long idRayon, Long idStock) {
+		return null;
 	}
 }

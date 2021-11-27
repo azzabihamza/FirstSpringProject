@@ -2,7 +2,7 @@ package tn.esprit.spring.DAO.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import tn.esprit.spring.DAO.Produit;
+import tn.esprit.spring.DAO.entity.ProduitEntity;
 
 
 @Getter
@@ -14,13 +14,13 @@ public class DetailFacture {
     private float prixTotal;
     private int pourcentageRemise;
     private int montantRemise;
-    Produit produit;
+    ProduitEntity produit;
     Facture facture;
 
     public DetailFacture() {
     }
 
-    public DetailFacture(long idDetailFacture ,int qte, float prixTotal, int pourcentageRemise, int montantRemise, Produit produit, Facture facture) {
+    public DetailFacture(long idDetailFacture , int qte, float prixTotal, int pourcentageRemise, int montantRemise, ProduitEntity produit, Facture facture) {
         this.idDetailFacture=idDetailFacture;
         this.qte = qte;
         this.prixTotal = prixTotal;
