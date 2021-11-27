@@ -1,42 +1,56 @@
 package tn.esprit.spring.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import tn.esprit.spring.DAO.Stock;
-import tn.esprit.spring.repository.StockRepository;
-
 import java.util.List;
 
-@Service
-public class StockServiceImpl implements StockService{
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-    @Autowired
-    StockRepository stockRepository;
+import tn.esprit.spring.dao.entity.Stock;
+import tn.esprit.spring.repostry.*;
 
-    @Override
-    public List<Stock> retrieveAllStocks() {
-        List<Stock> stocks = (List<Stock>) stockRepository.findAll();
-        for (Stock stock : stocks)
-            System.out.println("stock : "+ stock);
-        return stocks;
-    }
+@Service 
+public class StockServiceImpl implements IStockService {
 
-    @Override
-    public Stock addStock(Stock s) {
-        stockRepository.save(s);
-        return null;
-    }
+	@Autowired
+	StockRepostry StockRepostry ;
+	
+	@Override
+	public List<Stock> retrieveAllStock() {
+		// TODO Auto-generated method stub
+		System.out.println(StockRepostry.findAll());
+		
+		return (List<Stock>) StockRepostry.findAll();
+	
+	}
 
-    @Override
-    public Stock updateStock(Stock u) {
-        stockRepository.save(u);
-        return u;
-    }
+	@Override
+	public Stock addStock(Stock S) {
+		// TODO Auto-generated method stub
+		 StockRepostry.save(S); 
+			return S;
 
-    @Override
-    public Stock retrieveStock(Long id) {
-        Stock stock = stockRepository.findById(id).orElse(null);
-        System.out.println("stock : "+ stock);
-        return stock;
-    }
+	}
+
+	@Override
+	public void deleteStock(Long id) {
+		// TODO Auto-generated method stub
+		StockRepostry.deleteById(id);
+
+		
+	}
+
+	@Override
+	public Stock UpdateStock(Stock S) {
+		// TODO Auto-generated method stub
+		List<Stock> Stock = (List<Stock>) StockRepostry.save(S);
+		return S;}
+
+	@Override
+	public Stock retrieveStock(Long id) {
+		// TODO Auto-generated method stub
+		Stock S ; 
+		S= StockRepostry.findById(id).get();
+		
+		return S;}
+
 }

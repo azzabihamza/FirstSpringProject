@@ -1,95 +1,58 @@
 package tn.esprit.spring.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import tn.esprit.spring.DAO.Facture;
-import tn.esprit.spring.repository.FactureRepository;
-
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tn.esprit.spring.dao.entity.Facture;
+import tn.esprit.spring.repostry.*;
+
+
 @Service
-public class FactureServiceImpl implements FactureService{
+public class FactureServiceImpl implements IFactureService {
 
-    @Autowired
-    FactureRepository factureRepository;
+	@Autowired
+	FactureRepostry FactureRepostry ;
+	
+	
+	@Override
+	public List<Facture> retrieveAllFacture() {
+		// TODO Auto-generated method stub
+		System.out.println(FactureRepostry.findAll());
+		
+		return (List<Facture>) FactureRepostry.findAll();
+	
+	}
 
-    @Override
-    public List<Facture> retrieveAllFactures() {
-        List<Facture> factures = (List<Facture>) factureRepository.findAll();
-        for (Facture facture : factures)
-            System.out.println("facture : "+ facture);
-        return factures;
-    }
+	@Override
+	public Facture addFacture(Facture F) {
+		// TODO Auto-generated method stub
+		 FactureRepostry.save(F); 
+			return F;
 
-    @Override
-    public void cancelFacture(Long id) {
-        Facture facture = factureRepository.findById(id).orElse(null);
-        if (facture != null) {
-            facture.setActive(false);
-        }
-        factureRepository.save(facture);
-    }
+	}
 
-    @Override
-    public Facture retrieveFacture(Long id) {
-        Facture facture = factureRepository.findById(id).orElse(null);
-        System.out.println("facture : "+facture);
-        return facture;
-    }
+	@Override
+	public void deleteFacture(Long id) {
+		// TODO Auto-generated method stub
+		FactureRepostry.deleteById(id);
 
-    @Override
-    public void createFacture(Facture facture) {
-        factureRepository.save(facture);
-    }
+		
+	}
 
-    @Override
-    public void updateFacture(Facture facture) {
-        factureRepository.save(facture);
-    }
+	@Override
+	public Facture UpdateFacture(Facture F) {
+		// TODO Auto-generated method stub
+		List<Facture> Facture = (List<Facture>) FactureRepostry.save(F);
+		return F;	}
 
-    @Override
-    public void deleteFacture(Long id) {
-        factureRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Facture> retrieveFacturesInActive() {
-        List<Facture> factures = factureRepository.retrieveAllInActiveFacture();
-        for (Facture facture : factures)
-            System.out.println("facture : "+ facture);
-        return factures;
-    }
-
-    @Override
-    public List<Facture> retrieveFacturesActive() {
-        List<Facture> factures = factureRepository.retrieveAllActiveFacture();
-        for (Facture facture : factures)
-            System.out.println("facture : "+ facture);
-        return factures;
-    }
-
-    @Override
-    public List<Facture> retrieveFacturesByPriceRange(double min, double max) {
-        return factureRepository.retrieveAllFactureByTTCRange(min,max);
-    }
-
-    @Override
-    public List<Facture> retrieveFacturesByDateRange(String date1, String date2) {
-        return factureRepository.retirveAllFactureBetweenDate(date1,date2);
-    }
-
-    @Override
-    public List<Facture> retrieveFacturesByDate(String date) {
-        return factureRepository.retrieveAllFactureByDate(date);
-    }
-
-    @Override
-    public List<Facture> retrieveFacturesByStatusAndDate(String status, String date) {
-        if (status.equals("true"))
-            return factureRepository.retrieveAllFactureByDateAndActive(date);
-        else
-            return factureRepository.retrieveAllFactureByDateAndInActive(date);
-    }
-
+	@Override
+	public Facture retrieveFacture(Long id) {
+		// TODO Auto-generated method stub
+		Facture F ; 
+		F= FactureRepostry.findById(id).get();
+		
+		return F;}
 
 }

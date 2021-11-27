@@ -5,17 +5,18 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.5</version>
+		<version>2.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>tn.esprit.spring</groupId>
-	<artifactId>tp1-spring-boot</artifactId>
+	<groupId>esprit</groupId>
+	<artifactId>SpringBoot-App</artifactId>
 	<version>1.0</version>
-	<name>tp1-spring-boot</name>
-	<description>tp1-spring-boot</description>
+	<name>SpringBoot-App</name>
+	<description>Spring-Boot-App</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,52 +37,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
+		
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+
 		</dependency>
+		
 		<dependency>
-			<groupId>org.apache.myfaces.core </groupId>
-			<artifactId> myfaces-impl </artifactId>
-			<version>2.2.12 </version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter </artifactId>
+			<version>3.0.0 </version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.myfaces.core </groupId>
-			<artifactId>myfaces-api </artifactId>
-			<version>2.2.12 </version>
-		</dependency>
-	<dependency>
-			<groupId> org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper </artifactId>
-	</dependency >
-	<dependency >
-			<groupId>org.ocpsoft.rewrite </groupId >
-			<artifactId>rewrite-servlet </artifactId >
-			<version>3.4.1.Final </version >
-	</dependency >
-	<dependency>
-			<groupId >org.ocpsoft.rewrite </groupId >
-			<artifactId> rewrite-integration-faces </artifactId >
-			<version>3.4.1.Final </version >
-	</dependency>
-	<dependency>
-			<groupId>org.primefaces </groupId >
-			<artifactId>primefaces </artifactId >
-			<version>6.1 </version >
-	</dependency>
-	<dependency >
-			<groupId>org.projectlombok </groupId>
-			<artifactId>lombok </artifactId>
-			<version>1.16.16 </version>
-	</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -92,5 +62,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-</project>
+	</project>

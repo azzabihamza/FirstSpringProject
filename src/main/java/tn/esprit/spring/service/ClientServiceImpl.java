@@ -1,73 +1,58 @@
 package tn.esprit.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.spring.DAO.CategorieClient;
-import tn.esprit.spring.DAO.Client;
-import tn.esprit.spring.DAO.Profession;
-import tn.esprit.spring.repository.ClientRepository;
+import tn.esprit.spring.dao.entity.Client;
+import tn.esprit.spring.dao.entity.Facture;
+import tn.esprit.spring.repostry.*;
 
 @Service
-public class ClientServiceImpl implements ClientService {
+public class ClientServiceImpl implements IClientService {
 
 	@Autowired
-	ClientRepository clientRepository;
-
+	ClientRepostry clientRepostry ; 
+	
 	@Override
-	public List<Client> retrieveAllClients() {
-		List<Client> clients = (List<Client>) clientRepository.findAll();
-		for (Client client : clients) {
-			System.out.println("Client :" + client);
-		}
-		return clients;
+	public List<Client> retrieveAllClient() {
+		// TODO Auto-generated method stub
+		System.out.println(clientRepostry.findAll());
+		
+		return (List<Client>) clientRepostry.findAll();
+	
 	}
 
 	@Override
 	public Client addClient(Client c) {
-		clientRepository.save(c);
+		// TODO Auto-generated method stub
+		List<Client> clients = new ArrayList<Client>();
+		clients.add(clientRepostry.save(c));
 		return c;
 	}
 
 	@Override
-	@Transactional
-	public void deleteClient(Client c) {
-		clientRepository.delete(c);
+	public void deleteClient(Long id) {
+		// TODO Auto-generated method stub
+		clientRepostry.deleteById(id);
+
+		
 	}
 
 	@Override
-	@Transactional
-	public Client updateClient(Client c) {
-		return clientRepository.save(c);
+	public Client UpdateClient(Client c) {
+		// TODO Auto-generated method stub
+		List<Client> clients =(List<Client>) clientRepostry.save(c);
+		return c;
+	
 	}
 
 	@Override
 	public Client retrieveClient(Long id) {
-		Client client = clientRepository.findById(id).orElse(null);
-		System.out.println("Client :" + client);
-		return client;
+		// TODO Auto-generated method stub
+		return clientRepostry.findById(id).get();
 	}
 
-	@Override
-	public List<Client> retrieveClientsProffession(Profession profession) {
-		return clientRepository.retrieveClientsByProffession(profession);
-	}
-
-	@Override
-	public int updateClientCategorieByProffession(CategorieClient categorieClient, Profession profession) {
-		return clientRepository.updateClientCategorieByProffession(categorieClient, profession);
-	}
-
-	@Override
-	public void deleteClientByCategoryAndProffession(CategorieClient categorieClient, Profession profession) {
-		clientRepository.deleteClientByCategorieClientAndProfession(categorieClient, profession);
-	}
-
-	@Override
-	public List<Client> retrieveAllClientsBetweenDate(String date1, String date2) {
-		return clientRepository.retrieveClientsBetweenDates(date1, date2);
-	}
 }
