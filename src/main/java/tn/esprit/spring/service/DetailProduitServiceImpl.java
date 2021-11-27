@@ -2,7 +2,6 @@ package tn.esprit.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tn.esprit.spring.DAO.entity.CategorieProduit;
 import tn.esprit.spring.DAO.entity.DetailProduitEntity;
 import tn.esprit.spring.repository.DetailProduitRepository;
 import tn.esprit.spring.repository.ProduitRepository;
