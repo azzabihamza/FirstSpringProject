@@ -22,6 +22,9 @@ public class FactureServiceImpl implements FactureService{
     @Autowired
     ClientService clientService;
 
+    @Autowired
+    DetailFactureService detailFactureService;
+
     @Override
     public List<Facture> retrieveAllFactures() {
         return FactureEntityMapper.mapFactureEntityListToFactureList(factureRepository.findAll());
@@ -59,6 +62,9 @@ public class FactureServiceImpl implements FactureService{
 
     @Override
     public void deleteFacture(Long id) {
+        for ( int i = 0; i < detailFactureService.retrieveAllDetailFactureByFacture(id).size(); i++) {
+            detailFactureService.deleteDetailFacture(detailFactureService.retrieveAllDetailFactureByFacture(id).get(i).getIdDetailFacture());
+        }
         factureRepository.deleteById(id);
     }
 

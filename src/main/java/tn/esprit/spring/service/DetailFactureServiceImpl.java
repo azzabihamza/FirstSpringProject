@@ -46,4 +46,9 @@ public class DetailFactureServiceImpl implements DetailFactureService {
     public List<DetailFacture> getAllDetailFactures() {
         return DetailFactureEntityMapper.mapListDetailFactureEntityToDetailFactureList(detailFactureRepository.findAll());
     }
+
+    @Override
+    public List<DetailFacture> retrieveAllDetailFactureByFacture(Long id) {
+        return DetailFactureEntityMapper.mapListDetailFactureEntityToDetailFactureList(detailFactureRepository.retrieveAllDetailFactureByFacture(id));
+    }
 }

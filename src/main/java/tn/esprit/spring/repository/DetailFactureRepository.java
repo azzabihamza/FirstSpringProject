@@ -15,4 +15,6 @@ public interface DetailFactureRepository extends CrudRepository<DetailFactureEnt
     @Query("select d from DetailFactureEntity d where d.idDetailFacture = :id")
     DetailFactureEntity retieveDetailFactureById(@Param("id") Long id);
 
+    @Query("select d from DetailFactureEntity d where d.factureEntity.idFacture = :id")
+    List<DetailFactureEntity> retrieveAllDetailFactureByFacture(@Param("id") Long id);
 }

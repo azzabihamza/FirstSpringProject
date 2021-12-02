@@ -9,6 +9,7 @@ import tn.esprit.spring.service.ClientService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class ClientRestController {
 
     @Autowired
