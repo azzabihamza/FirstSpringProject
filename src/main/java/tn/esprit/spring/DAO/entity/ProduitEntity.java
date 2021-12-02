@@ -1,12 +1,10 @@
 package tn.esprit.spring.DAO.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import tn.esprit.spring.DAO.Fournisseur;
 import tn.esprit.spring.DAO.Rayon;
 import tn.esprit.spring.DAO.Stock;
 
@@ -32,7 +30,7 @@ public class ProduitEntity implements Serializable {
 	@ManyToOne
 	Rayon rayon;
 	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Fournisseur> fournisseurs;
+	private Set<FournisseurEntity> fournisseurEntities;
 	@OneToOne
 	private DetailProduitEntity detailProduitEntity;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
