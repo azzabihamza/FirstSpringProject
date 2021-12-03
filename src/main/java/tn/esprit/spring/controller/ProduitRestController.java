@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
+import tn.esprit.spring.service.FournisseurServiceImpl;
 import tn.esprit.spring.service.ProduitService;
+
 
 import java.util.List;
 
@@ -14,6 +16,8 @@ public class ProduitRestController {
 
     @Autowired
     ProduitService produitService;
+    @Autowired 
+    FournisseurServiceImpl fournisseurservice;
 
     @GetMapping(value = "getAllProduits")
     public List<ProduitEntity> getAllProduits(){
@@ -31,6 +35,14 @@ public class ProduitRestController {
     public void deleteProduit(@PathVariable("idProduit") Long idProduit){
         produitService.deleteProduit(idProduit);
     }
+    
+    @ResponseBody
+    @PutMapping("/assignFournisseurToProduit/{idFournisseur}/{idProduit}")
+	public void assignFournisseurToProduit(@PathVariable("idFournisseur") Long fournisseurId,@PathVariable("idProduit") Long produitId) {
+		produitService.assignFournisseurToProduit(fournisseurId, produitId);
+    }
+    
+  
 
     }
 

@@ -21,5 +21,8 @@ public interface ProduitService {
     public List<ProduitEntity> retrieveProduitsByStock(Long idStock);
 
     public List<ProduitEntity> retrieveProduitsByRayonAndStock(Long idRayon, Long idStock);
-
+    
+    
+    //assignFournisseurToProduit
+    public void assignFournisseurToProduit(Long fournisseurId, Long produitId) ;
 }

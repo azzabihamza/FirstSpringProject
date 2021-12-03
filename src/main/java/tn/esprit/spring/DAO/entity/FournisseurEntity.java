@@ -2,6 +2,7 @@ package tn.esprit.spring.DAO.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.crypto.Data;
@@ -24,8 +25,24 @@ public class FournisseurEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private CategorieProduit categorieProduit;
 
+	
 
-
+	
+	@ManyToMany
+	@JoinTable(
+	  name = "fournisseur_produits", 
+	  joinColumns = @JoinColumn(name = "idFournisseur"), 
+	  inverseJoinColumns = @JoinColumn(name = "idProduit"))
+	Set<ProduitEntity> produits; 
+	
+	public Set<ProduitEntity> getProduits() {
+		return produits;
+	}
+	public void setProduits(Set<ProduitEntity> produits) {
+		this.produits = produits;
+	}
+	
+	
 	public FournisseurEntity(long idFournisseur, String codeFournisseur, String libelleFournisseur, String adresseFournisseur,
 							 String numtel, Date dateCreation, CategorieProduit categorieProduit) {
 		super();

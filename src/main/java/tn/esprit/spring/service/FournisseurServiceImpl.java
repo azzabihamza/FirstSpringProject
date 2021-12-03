@@ -7,6 +7,7 @@ import tn.esprit.spring.DAO.entity.FournisseurEntity;
 import tn.esprit.spring.repository.FournisseurRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,22 +54,22 @@ public class FournisseurServiceImpl implements IFournisseurService {
     }
 
     @Override
-    public List<FournisseurEntity> retrieveFournissersByCategorieProduit(String categorie_produit) {
+    public List<FournisseurEntity> retrieveFournissersByCategorieProduit(CategorieProduit categorie_produit) {
         return FournisseurRepostry.retrieveFournissersByCategorieProduit(categorie_produit);
     }
 
     @Override
-    public List<FournisseurEntity> retrieveFournissersByDateCreation(String dateDebut, String dateFin) {
+    public List<FournisseurEntity> retrieveFournissersByDateCreation(Date dateDebut, Date dateFin) {
         return FournisseurRepostry.retrieveFournissersByDateCreation(dateDebut, dateFin);
     }
 
     @Override
-    public int CountDistinctByCategorieProduit(String categorie_produit) {
+    public int CountDistinctByCategorieProduit(CategorieProduit categorie_produit) {
         return FournisseurRepostry.CountDistinctByCategorieProduit(categorie_produit);
     }
 
     @Override
-    public List<FournisseurEntity> CountDistinctByCategorieProduitbydate(String categorie_produit, String dateDebut, String dateFin) {
+    public List<FournisseurEntity> CountDistinctByCategorieProduitbydate(CategorieProduit categorie_produit, Date dateDebut, Date dateFin) {
         return FournisseurRepostry.CountDistinctByCategorieProduitbydate(categorie_produit, dateDebut, dateFin);
     }
 
@@ -77,11 +78,5 @@ public class FournisseurServiceImpl implements IFournisseurService {
       return FournisseurRepostry.nombreTotalFournisseur();
     }
 
-    @Override
-    public void assignFournisseurToProduit(Long idFournisseur, Long idProduit) {
-        FournisseurEntity f = FournisseurRepostry.findById(idFournisseur).get();
-       /* ProduitEntity p = ProduitRepostry.findById(idProduit).get();
-        p.getFournisseurs().add(f);
-        ProduitRepostry.save(p);*/
-    }
+ 
 }

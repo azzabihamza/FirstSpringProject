@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.DAO.entity.DetailProduitEntity;
+import tn.esprit.spring.DAO.entity.FournisseurEntity;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
 import tn.esprit.spring.repository.DetailProduitRepository;
+import tn.esprit.spring.repository.FournisseurRepository;
 import tn.esprit.spring.repository.ProduitRepository;
 import tn.esprit.spring.repository.RayonRepository;
 import tn.esprit.spring.repository.StockRepository;
@@ -26,6 +28,9 @@ public class ProduitServiceImpl implements ProduitService {
     StockRepository stockRepository;
 	@Autowired
 	DetailProduitService detailProduitService;
+	@Autowired
+    FournisseurRepository FournisseurRepostry;
+
 
 	@Override
 	public List<ProduitEntity> retrieveAllProduits() {
@@ -91,4 +96,16 @@ public class ProduitServiceImpl implements ProduitService {
 	public List<ProduitEntity> retrieveProduitsByRayonAndStock(Long idRayon, Long idStock) {
 		return null;
 	}
+
+	//ASSIGNING FOURNISSEUR TO PRODUIT
+		@Override
+		public void assignFournisseurToProduit(Long fournisseurId, Long produitId) {
+			FournisseurEntity f = FournisseurRepostry.findById(fournisseurId).get();
+			ProduitEntity p = produitRepository.findById(produitId).get();
+			p.getFournisseurs().add(f);
+			produitRepository.save(p);
+			
+		}
+	
+	
 }
