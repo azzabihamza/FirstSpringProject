@@ -29,7 +29,7 @@ public class FactureEntity implements Serializable {
 	@ManyToOne
 	private ClientEntity client;
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "factureEntity")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "factureEntity",fetch = FetchType.EAGER)
 	private Set<DetailFactureEntity> detailfactures;
 
 	public FactureEntity(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active,

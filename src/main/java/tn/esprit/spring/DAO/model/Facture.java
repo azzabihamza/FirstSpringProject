@@ -20,16 +20,16 @@ public class Facture {
     private Date dateFacture;
     private boolean active;
     private Client client;
-    private Set<DetailFactureEntity> detailfactures;
+    //private Set<DetailFactureEntity> detailfactures;
 
-    public Facture(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active, Client client, Set<DetailFactureEntity> detailfactures) {
+    public Facture(long idFacture, float montantRemise, float montantFacture, Date dateFacture, boolean active, Client client /*, Set<DetailFactureEntity> detailfactures*/) {
         this.idFacture = idFacture;
         this.montantRemise = montantRemise;
         this.montantFacture = montantFacture;
         this.dateFacture = dateFacture;
         this.active = active;
         this.client = client;
-        this.detailfactures = detailfactures;
+        //this.detailfactures = detailfactures;
     }
 
     public Facture() {
@@ -82,7 +82,7 @@ public class Facture {
     public void setClient(Client client) {
         this.client = client;
     }
-
+/*
     public Set<DetailFactureEntity> getDetailfactures() {
         return detailfactures;
     }
@@ -90,6 +90,6 @@ public class Facture {
     public void setDetailfactures(Set<DetailFactureEntity> detailfactures) {
         this.detailfactures = detailfactures;
     }
-
+*/
 
 }

@@ -6,6 +6,7 @@ import tn.esprit.spring.DAO.entity.ClientEntity;
 
 import tn.esprit.spring.DAO.entity.FactureEntity;
 import tn.esprit.spring.DAO.mapper.FactureEntityMapper;
+import tn.esprit.spring.DAO.model.DetailFacture;
 import tn.esprit.spring.repository.FactureRepository;
 import tn.esprit.spring.DAO.model.Facture;
 
@@ -42,7 +43,7 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public void createFacture(Facture facture) {
+    public Facture createFacture(Facture facture) {
         ClientEntity client= clientService.retrieveClient(facture.getClient().getIdClient());
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         if (client != null) {
@@ -51,8 +52,10 @@ public class FactureServiceImpl implements FactureService{
             factureEntity.setDateFacture(new Date(System.currentTimeMillis()));
             factureEntity.setActive(true);
             factureRepository.save(factureEntity);
+            return FactureEntityMapper.mapFactureEntityToFacture(factureEntity);
         }else
             System.out.println("client not found");
+        return null;
     }
 
     @Override
@@ -62,8 +65,9 @@ public class FactureServiceImpl implements FactureService{
 
     @Override
     public void deleteFacture(Long id) {
-        for ( int i = 0; i < detailFactureService.retrieveAllDetailFactureByFacture(id).size(); i++) {
-            detailFactureService.deleteDetailFacture(detailFactureService.retrieveAllDetailFactureByFacture(id).get(i).getIdDetailFacture());
+        List<DetailFacture> detailFactures = detailFactureService.retrieveAllDetailFactureByFacture(id);
+        for ( int i = 0; i < detailFactures.size(); i++) {
+            detailFactureService.deleteDetailFacture(detailFactures.get(i).getIdDetailFacture());
         }
         factureRepository.deleteById(id);
     }

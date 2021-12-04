@@ -1,5 +1,7 @@
 package tn.esprit.spring.DAO.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -22,6 +24,7 @@ public class DetailFactureEntity implements Serializable {
 	private int montantRemise;
 	@ManyToOne
 	ProduitEntity produit;
+	@JsonIgnore
 	@ManyToOne
     FactureEntity factureEntity;
 

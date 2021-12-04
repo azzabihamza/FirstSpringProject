@@ -10,20 +10,20 @@ import java.util.List;
 
 public class FactureEntityMapper {
    public static Facture mapFactureEntityToFacture(FactureEntity factureEntity) {
-        return new Facture(factureEntity.getIdFacture(), factureEntity.getMontantRemise(),factureEntity.getMontantFacture(),factureEntity.getDateFacture(),factureEntity.isActive(),getClient(factureEntity.getClient()) ,factureEntity.getDetailfactures());
+        return new Facture(factureEntity.getIdFacture(), factureEntity.getMontantRemise(),factureEntity.getMontantFacture(),factureEntity.getDateFacture(),factureEntity.isActive(),getClient(factureEntity.getClient()) /*,factureEntity.getDetailfactures()*/);
     }
 
     public static List<Facture> mapFactureEntityListToFactureList(List<FactureEntity> factureEntityList) {
        List<Facture> factures = new ArrayList<>();
         for (FactureEntity factureEntity : factureEntityList) {
-           factures.add(new Facture(factureEntity.getIdFacture(), factureEntity.getMontantRemise(),factureEntity.getMontantFacture(),factureEntity.getDateFacture(),factureEntity.isActive(), getClient(factureEntity.getClient()),factureEntity.getDetailfactures()));
+           factures.add(new Facture(factureEntity.getIdFacture(), factureEntity.getMontantRemise(),factureEntity.getMontantFacture(),factureEntity.getDateFacture(),factureEntity.isActive(), getClient(factureEntity.getClient())/*,factureEntity.getDetailfactures()*/));
         }
         return factures;
 
     }
 
     public static FactureEntity mapFactureToFactureEntity(Facture facture) {
-        return new FactureEntity(facture.getIdFacture(), facture.getMontantRemise(),facture.getMontantFacture(),facture.getDateFacture(),facture.isActive(),facture.getDetailfactures());
+        return new FactureEntity(facture.getIdFacture(), facture.getMontantRemise(),facture.getMontantFacture(),facture.getDateFacture(),facture.isActive()/*,facture.getDetailfactures()*/,null);
     }
 
     /*private static ClientEntity getClientEntity(Client client) {

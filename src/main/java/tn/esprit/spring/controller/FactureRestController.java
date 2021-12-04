@@ -1,9 +1,12 @@
 package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.DAO.model.Facture;
+import tn.esprit.spring.response.ResponseHandler;
 import tn.esprit.spring.service.FactureService;
 
 import java.util.List;
@@ -40,8 +43,15 @@ public class FactureRestController {
     }
 
     @PostMapping(value="/addFacture", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addFacture (@RequestBody Facture facture){
-        factureService.createFacture(facture);
+    public ResponseEntity<Object> addFacture (@RequestBody Facture facture){
+
+        try {
+            Facture f = factureService.createFacture(facture);
+            return ResponseHandler.generateResponse("Successfully added data!", HttpStatus.OK, f);
+        }catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+
     }
 
     @GetMapping("/getInActiveFacture")

@@ -39,4 +39,9 @@ public class DetailFactureRestController {
     public List<DetailFacture> getAllDetailFacture() {
         return detailFactureService.getAllDetailFactures();
     }
+
+    @GetMapping(value="/getDetailFactureByFacture/{id}")
+    public List<DetailFacture> getDetailFactureByFacture(@PathVariable("id") Long id) {
+        return detailFactureService.retrieveAllDetailFactureByFacture(id);
+    }
 }

@@ -1,5 +1,6 @@
 package tn.esprit.spring.DAO.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +34,7 @@ public class ProduitEntity implements Serializable {
 	private Set<FournisseurEntity> fournisseurEntities;
 	@OneToOne
 	private DetailProduitEntity detailProduitEntity;
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
 	private Set<DetailFactureEntity> detailFactures;
 

@@ -12,7 +12,7 @@ public interface FactureService {
 
     Facture retrieveFacture(Long id);
 
-    void createFacture(Facture facture);
+    Facture createFacture(Facture facture);
 
     void updateFacture(Facture facture);
 
