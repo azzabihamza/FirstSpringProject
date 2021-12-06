@@ -27,7 +27,7 @@ public class FactureEntityMapper {
     }
 
     /*private static ClientEntity getClientEntity(Client client) {
-       return new ClientEntity(client.getIdClient(),client.getNom(), client.getPrenom(), client.getEmail(), client.getPassword() ,client.getDateNaissance(),tn.esprit.spring.DAO.Profession.valueOf(client.getProfession().toString())  , tn.esprit.spring.DAO.entity.CategorieClient.valueOf(client.getCategorieClient().toString()) );
+       return new ClientEntity(client.getIdClient(),client.getNom(), client.getPrenom(), client.getEmail(), client.getPassword() ,client.getDateNaissance(),tn.esprit.spring.DAO.entity.Profession.valueOf(client.getProfession().toString())  , tn.esprit.spring.DAO.entity.CategorieClient.valueOf(client.getCategorieClient().toString()) );
     }*/
 
     private static Client getClient(ClientEntity clientEntity) {

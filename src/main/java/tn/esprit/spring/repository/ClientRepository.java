@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import tn.esprit.spring.DAO.entity.CategorieClient;
 import tn.esprit.spring.DAO.entity.ClientEntity;
-import tn.esprit.spring.DAO.Profession;
+import tn.esprit.spring.DAO.entity.Profession;
 
 import java.util.List;
 

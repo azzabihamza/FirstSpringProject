@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.test.annotation.Rollback;
 import tn.esprit.spring.DAO.entity.CategorieClient;
 import tn.esprit.spring.DAO.entity.ClientEntity;
-import tn.esprit.spring.DAO.Profession;
+import tn.esprit.spring.DAO.entity.Profession;
 import tn.esprit.spring.repository.ClientRepository;
 import java.util.Date;
 import java.util.List;

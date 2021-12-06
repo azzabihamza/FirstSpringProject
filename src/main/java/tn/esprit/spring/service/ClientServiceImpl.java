@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.DAO.entity.CategorieClient;
 import tn.esprit.spring.DAO.entity.ClientEntity;
-import tn.esprit.spring.DAO.Profession;
+import tn.esprit.spring.DAO.entity.Profession;
 import tn.esprit.spring.repository.ClientRepository;
 
 @Service

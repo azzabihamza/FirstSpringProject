@@ -1,7 +1,6 @@
 package tn.esprit.spring.DAO.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import tn.esprit.spring.DAO.Profession;
 
 import java.io.Serializable;
 import java.util.Date;

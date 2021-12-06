@@ -21,8 +21,9 @@ public class FournisseurRestController {
     @Autowired
     IFournisseurService fournisseurservice;
 
-    @Autowired
-    ProduitService produitservice;
+    /*@Autowired
+    ProduitService produitService;*/
+
     //affichage
     // http://localhost:8089/SpringMVC/servlet/retrieveFournisseur
     @GetMapping("retrieveFournisseur")

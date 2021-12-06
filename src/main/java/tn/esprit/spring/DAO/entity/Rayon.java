@@ -1,4 +1,4 @@
-package tn.esprit.spring.DAO;
+package tn.esprit.spring.DAO.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import tn.esprit.spring.DAO.entity.ProduitEntity;

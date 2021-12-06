@@ -1,13 +1,12 @@
 package tn.esprit.spring.DAO.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import tn.esprit.spring.DAO.Rayon;
-import tn.esprit.spring.DAO.Stock;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,6 +25,7 @@ public class ProduitEntity implements Serializable {
 	private String codeProduit;
 	private String libelleProduit;
 	private float prixUnitaire;
+	@JsonBackReference
 	@ManyToOne
 	Stock stock;
 	@ManyToOne

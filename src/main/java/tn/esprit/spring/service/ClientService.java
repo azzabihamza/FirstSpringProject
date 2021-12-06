@@ -4,7 +4,7 @@ import java.util.List;
 
 import tn.esprit.spring.DAO.entity.CategorieClient;
 import tn.esprit.spring.DAO.entity.ClientEntity;
-import tn.esprit.spring.DAO.Profession;
+import tn.esprit.spring.DAO.entity.Profession;
 
 public interface ClientService {
 
