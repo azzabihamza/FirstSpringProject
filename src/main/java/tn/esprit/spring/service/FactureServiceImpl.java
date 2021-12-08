@@ -2,6 +2,7 @@ package tn.esprit.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.DAO.entity.ClientEntity;
 
 import tn.esprit.spring.DAO.entity.FactureEntity;
@@ -64,12 +65,15 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
+    @Transactional
     public void deleteFacture(Long id) {
         List<DetailFacture> detailFactures = detailFactureService.retrieveAllDetailFactureByFacture(id);
         for ( int i = 0; i < detailFactures.size(); i++) {
+            System.out.println(detailFactures.get(i).getIdDetailFacture());
             detailFactureService.deleteDetailFacture(detailFactures.get(i).getIdDetailFacture());
         }
-        factureRepository.deleteById(id);
+        System.out.println(id);
+        factureRepository.deleteFactureEntityById(id);
     }
 
     @Override

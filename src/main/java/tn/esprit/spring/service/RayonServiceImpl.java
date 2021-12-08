@@ -29,8 +29,8 @@ public class RayonServiceImpl implements RayonService {
 
     @Override
     @Transactional
-    public void deleteRayon(Rayon r) {
-        rayonRepository.delete(r);
+    public void deleteRayon(Long id) {
+        rayonRepository.deleteById(id);
     }
 
     @Override

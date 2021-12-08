@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import tn.esprit.spring.DAO.entity.FactureEntity;
+import tn.esprit.spring.DAO.model.DetailFacture;
 import tn.esprit.spring.repository.FactureRepository;
 
 import java.util.List;
@@ -58,6 +59,7 @@ class FactureServiceImplTest {
 
     @Test
     void deleteFacture() {
+        factureRepository.deleteFactureEntityById(17L);
     }
 
 

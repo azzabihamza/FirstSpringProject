@@ -9,7 +9,7 @@ public interface RayonService {
 
     Rayon addRayon(Rayon r);
 
-    void deleteRayon(Rayon r);
+    void deleteRayon(Long id);
 
     Rayon updateRayon(Rayon r);
 

@@ -35,8 +35,8 @@ public class RayonRestController {
         return rayonService.addRayon(rayon);
     }
 
-    @DeleteMapping(value="/deleteRayon",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteRayon(@RequestBody Rayon rayon){
-        rayonService.deleteRayon(rayon);
+    @DeleteMapping(value="/deleteRayon/{idRayon}")
+    public void deleteRayon(@PathVariable("idRayon") Long idRayon){
+        rayonService.deleteRayon(idRayon);
     }
 }

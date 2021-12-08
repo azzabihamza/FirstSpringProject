@@ -1,5 +1,6 @@
 package tn.esprit.spring.repository;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -17,4 +18,8 @@ public interface DetailFactureRepository extends CrudRepository<DetailFactureEnt
 
     @Query("select d from DetailFactureEntity d where d.factureEntity.idFacture = :id")
     List<DetailFactureEntity> retrieveAllDetailFactureByFacture(@Param("id") Long id);
+
+    @Modifying
+    @Query("delete from DetailFactureEntity d where d.idDetailFacture = :id")
+    void deleteDetailFactureEntityById(@Param("id") Long id);
 }

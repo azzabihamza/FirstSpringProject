@@ -2,6 +2,7 @@ package tn.esprit.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.DAO.mapper.DetailFactureEntityMapper;
 import tn.esprit.spring.DAO.model.Facture;
 import tn.esprit.spring.repository.DetailFactureRepository;
@@ -28,8 +29,9 @@ public class DetailFactureServiceImpl implements DetailFactureService {
     }
 
     @Override
+    @Transactional
     public void deleteDetailFacture(Long id) {
-        detailFactureRepository.deleteById(id);
+        detailFactureRepository.deleteDetailFactureEntityById(id);
     }
 
     @Override

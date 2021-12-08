@@ -17,6 +17,10 @@ public interface FactureRepository extends CrudRepository<FactureEntity, Long> {
     @Query("update FactureEntity  set active = :active where idFacture = :id")
     void updateActive(@Param("id") Long id,@Param("active") boolean active);
 
+    @Modifying
+    @Query("delete from FactureEntity f where f.idFacture = :id")
+    void deleteFactureEntityById(@Param("id") Long id);
+
     @Query("select f from FactureEntity f where f.active = true ")
     List<FactureEntity> retrieveAllActiveFacture();
 
@@ -70,4 +74,7 @@ public interface FactureRepository extends CrudRepository<FactureEntity, Long> {
 
     @Query("select f from FactureEntity f where f.client.idClient = :idClient")
     List<FactureEntity> retrieveAllFactureByClient(@Param("idClient") Long idClient);
+
+    @Query(value = "Select SUM(f.montantFacture) FROM FactureEntity f where f.active=false")
+    Float calculCA();
 }

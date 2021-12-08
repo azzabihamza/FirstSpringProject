@@ -2,6 +2,7 @@ package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
 import tn.esprit.spring.service.ProduitService;
@@ -30,6 +31,11 @@ public class ProduitRestController {
     @DeleteMapping("/deleteProduit/{idProduit}")
     public void deleteProduit(@PathVariable("idProduit") Long idProduit){
         produitService.deleteProduit(idProduit);
+    }
+
+    @GetMapping(value = "/getChiffreAffaire")
+    public float AffichageChiffreAffaire() {
+        return produitService.AffichageChiffreAffaire();
     }
 
     }

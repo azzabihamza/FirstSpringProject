@@ -1,5 +1,6 @@
 package tn.esprit.spring.repository;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -21,6 +22,10 @@ public interface ProduitRepository extends CrudRepository<ProduitEntity, Long> {
 
     @Query("SELECT p from ProduitEntity p where p.libelleProduit like :x")
     List<ProduitEntity> retrieveProduitByLibelle(@Param("x") String x);
+
+    @Modifying
+    @Query("delete from ProduitEntity p where p.idProduit= :id")
+    void deleteProduitById(@Param("id") Long idProduit);
 
 
 }

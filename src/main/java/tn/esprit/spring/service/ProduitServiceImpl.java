@@ -4,15 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.DAO.entity.DetailProduitEntity;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
-import tn.esprit.spring.repository.DetailProduitRepository;
-import tn.esprit.spring.repository.ProduitRepository;
-import tn.esprit.spring.repository.RayonRepository;
-import tn.esprit.spring.repository.StockRepository;
+import tn.esprit.spring.repository.*;
 
 
 @Service
@@ -26,6 +24,8 @@ public class ProduitServiceImpl implements ProduitService {
     StockRepository stockRepository;
 	@Autowired
 	DetailProduitService detailProduitService;
+	@Autowired
+	FactureRepository factureRepository;
 
 	@Override
 	public List<ProduitEntity> retrieveAllProduits() {
@@ -40,12 +40,13 @@ public class ProduitServiceImpl implements ProduitService {
 	public void addProduit(ProduitEntity p) {
 		p.setRayon(rayonRepository.findById(p.getRayon().getIdRayon()).orElse(null));
 		p.setStock(stockRepository.findById(p.getStock().getIdStock()).orElse(null));
+		System.out.println("produit : "+ p);
 		p.setDetailProduitEntity(saveDetailProduit(p));
 		produitRepository.save(p);
 	}
 
 	private DetailProduitEntity saveDetailProduit(ProduitEntity p) {
-		if (p.getDetailProduitEntity().getDateCreation() == null){
+		if (p.getDetailProduitEntity().getDateCreation() == null) {
 			p.getDetailProduitEntity().setDateCreation(new java.sql.Date(new java.util.Date().getTime()));
 			p.getDetailProduitEntity().setDateDerniereModification(new java.sql.Date(new java.util.Date().getTime()));
 		}else {
@@ -63,13 +64,14 @@ public class ProduitServiceImpl implements ProduitService {
 		return produit;
 	}
 
+	@Transactional
 	@Override
 	public void deleteProduit(Long id) {
-		ProduitEntity produit = produitRepository.findById(id).orElse(null);
-		if(produit != null) {
-			detailProduitService.deleteDetailProduit(produit.getDetailProduitEntity().getIdDetailProduit());
-			produitRepository.delete(produit);
-		}
+		//ProduitEntity produit = produitRepository.findById(id).orElse(null);
+		//if(produit != null) {
+			//detailProduitService.deleteDetailProduit(produit.getDetailProduitEntity().getIdDetailProduit());
+			produitRepository.deleteProduitById(id);
+		//}
 	}
 
 	@Override
@@ -90,5 +92,14 @@ public class ProduitServiceImpl implements ProduitService {
 	@Override
 	public List<ProduitEntity> retrieveProduitsByRayonAndStock(Long idRayon, Long idStock) {
 		return null;
+	}
+
+	@Scheduled(fixedRate = 60000)
+	@Override
+	public Float AffichageChiffreAffaire() {
+		Float x = factureRepository.calculCA();
+		System.out.println(x);
+		return factureRepository.calculCA();
+
 	}
 }

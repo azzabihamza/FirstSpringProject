@@ -22,4 +22,6 @@ public interface ProduitService {
 
     public List<ProduitEntity> retrieveProduitsByRayonAndStock(Long idRayon, Long idStock);
 
+    public Float AffichageChiffreAffaire();
+
 }

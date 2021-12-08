@@ -32,7 +32,7 @@ public class ProduitEntity implements Serializable {
 	Rayon rayon;
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<FournisseurEntity> fournisseurEntities;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private DetailProduitEntity detailProduitEntity;
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
