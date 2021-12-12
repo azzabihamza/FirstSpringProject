@@ -75,6 +75,6 @@ public interface FactureRepository extends CrudRepository<FactureEntity, Long> {
     @Query("select f from FactureEntity f where f.client.idClient = :idClient")
     List<FactureEntity> retrieveAllFactureByClient(@Param("idClient") Long idClient);
 
-    @Query(value = "Select SUM(f.montantFacture) FROM FactureEntity f where f.active=false")
+    @Query(value = "Select SUM(f.montantFacture) FROM FactureEntity f where f.active=TRUE ")
     Float calculCA();
 }

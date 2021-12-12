@@ -30,8 +30,17 @@ public class ProduitEntity implements Serializable {
 	Stock stock;
 	@ManyToOne
 	Rayon rayon;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<FournisseurEntity> fournisseurEntities;
+
+	public Set<FournisseurEntity> getFournisseurEntities() {
+		return fournisseurEntities;
+	}
+
+	public void setFournisseurEntities(Set<FournisseurEntity> fournisseurEntities) {
+		this.fournisseurEntities = fournisseurEntities;
+	}
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private DetailProduitEntity detailProduitEntity;
 	@JsonIgnore

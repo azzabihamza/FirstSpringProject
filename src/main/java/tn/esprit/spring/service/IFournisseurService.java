@@ -19,5 +19,5 @@ public interface IFournisseurService {
     public int CountDistinctByCategorieProduit(CategorieProduit categorie_produit);
     public List<FournisseurEntity> CountDistinctByCategorieProduitbydate(CategorieProduit categorie_produit,  Date dateDebut, Date dateFin );
     public int nombreTotalFournisseur();
-    //public List<Produit> retrieveProduitsOfFournisseur(@Param("idf") Long idf);
+
 }

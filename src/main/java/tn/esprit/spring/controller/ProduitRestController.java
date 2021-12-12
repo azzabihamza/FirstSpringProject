@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.DAO.entity.FournisseurEntity;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
 import tn.esprit.spring.service.ProduitService;
 
@@ -33,10 +34,53 @@ public class ProduitRestController {
         produitService.deleteProduit(idProduit);
     }
 
+    @GetMapping(value = "getProduit/{idProduit}")
+    public ProduitEntity retrieveProduit(@PathVariable("idProduit") Long idProduit){return produitService.retrieveProduit(idProduit);}
+
     @GetMapping(value = "/getChiffreAffaire")
     public float AffichageChiffreAffaire() {
         return produitService.AffichageChiffreAffaire();
     }
+
+    @GetMapping(value = "/getProduitByPrice")
+    public List<ProduitEntity> retrieveProduitByPrice() {
+        return produitService.retrieveProduitByPrice();
+    }
+
+    @GetMapping(value = "/getProduitByLibelle/{libelle}")
+    public List<ProduitEntity> retrieveProduitByLibelle(@PathVariable("libelle") String libelle) {
+        return produitService.retrieveProduitByLibelle(libelle);
+    }
+    @GetMapping(value = "/getAllProduitByPriceDesc")
+    public List<ProduitEntity> retireveAllProduitByPriceDesc() {
+        return produitService.retireveAllProduitByPriceDesc();
+    }
+
+    @GetMapping(value = "/getAllProduitByPriceAsc")
+    public List<ProduitEntity> retireveAllProduitByPriceAsc() {
+        return produitService.retireveAllProduitByPriceAsc();
+    }
+
+    //DAAMIAdem
+    //affecter un fournisseur a un produit
+    @ResponseBody
+    @PutMapping("/assignFournisseurToProduit/{idFournisseur}/{idProduit}")
+    public void assignFournisseurToProduit(@PathVariable("idFournisseur") Long fournisseurId,@PathVariable("idProduit") Long produitId) {
+        produitService.assignFournisseurToProduit(fournisseurId, produitId);
+    }
+
+    @GetMapping("getFournisseurProduit/{idProduit}")
+    public List<FournisseurEntity> getFournisseurProduit(@PathVariable("idProduit") Long idProduit){
+        return produitService.retrieveFournisseurByProduit(idProduit);
+    }
+    @GetMapping("getProduitByPriceRange/{min}/{max}")
+    public List<ProduitEntity> retrieveProduitByPriceRange(@PathVariable("min") float min,@PathVariable("max") float max){
+
+        return  produitService.retrieveProduitByPriceRange(min,max);
+    }
+
+
+
 
     }
 

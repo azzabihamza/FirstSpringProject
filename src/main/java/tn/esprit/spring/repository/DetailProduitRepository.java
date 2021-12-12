@@ -12,6 +12,7 @@ public interface DetailProduitRepository extends CrudRepository<DetailProduitEnt
     @Query("select max(idDetailProduit) from DetailProduitEntity")
     DetailProduitEntity getLastDetailProduitAdded();
 
+
     @Modifying
     @Query("delete FROM DetailProduitEntity dp where dp.idDetailProduit = :id")
     void deleteDetailProduitEntityById(@Param("id") Long idDetailProduit);

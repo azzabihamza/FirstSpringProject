@@ -11,8 +11,13 @@ import java.util.List;
 
 public interface ProduitRepository extends CrudRepository<ProduitEntity, Long> {
 
+
+
     @Query("select p from ProduitEntity p where p.prixUnitaire between :min and :max")
-    List<ProduitEntity> retrieveProduitByPriceRange(@Param("min") double min, @Param("max") double max);
+    List<ProduitEntity> retrieveProduitByPriceRange(@Param("min") float min, @Param("max") float max);
+
+    @Query("select p from ProduitEntity p where p.prixUnitaire>500")
+    List<ProduitEntity> retrieveProduitByPrice();
 
     @Query("SELECT p from ProduitEntity p order by p.prixUnitaire desc ")
     List<ProduitEntity> retireveAllProduitByPriceDesc();
