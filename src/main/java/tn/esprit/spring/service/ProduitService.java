@@ -2,6 +2,9 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import tn.esprit.spring.DAO.entity.FournisseurEntity;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
 
 public interface ProduitService {
@@ -23,5 +26,21 @@ public interface ProduitService {
     public List<ProduitEntity> retrieveProduitsByRayonAndStock(Long idRayon, Long idStock);
 
     public Float AffichageChiffreAffaire();
+
+    public List<ProduitEntity> retrieveProduitByPrice();
+
+    public List<ProduitEntity> retrieveProduitByPriceRange(float min,float max);
+
+    public List<ProduitEntity> retrieveProduitByLibelle(String x);
+
+    public List<ProduitEntity> retireveAllProduitByPriceAsc();
+
+    public List<ProduitEntity> retireveAllProduitByPriceDesc();
+
+    //DAAMI Adem
+    //affichage de la liste de fournisseur de chaque produit
+    public List<FournisseurEntity> retrieveFournisseurByProduit(Long idProduit);
+    //assignFournisseurToProduit
+    public void assignFournisseurToProduit(Long fournisseurId, Long produitId) ;
 
 }

@@ -1,20 +1,26 @@
 package tn.esprit.spring.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.DAO.entity.DetailProduitEntity;
+import tn.esprit.spring.DAO.entity.FournisseurEntity;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
 import tn.esprit.spring.repository.*;
 
 
 @Service
 public class ProduitServiceImpl implements ProduitService {
+
+
 
 	@Autowired
 	ProduitRepository produitRepository;
@@ -26,6 +32,9 @@ public class ProduitServiceImpl implements ProduitService {
 	DetailProduitService detailProduitService;
 	@Autowired
 	FactureRepository factureRepository;
+
+	@Autowired
+	FournisseurRepository FournisseurRepository;
 
 	@Override
 	public List<ProduitEntity> retrieveAllProduits() {
@@ -64,14 +73,24 @@ public class ProduitServiceImpl implements ProduitService {
 		return produit;
 	}
 
+//	@Transactional
+//	@Override
+//	public void deleteProduit(Long id) {
+//		//ProduitEntity produit = produitRepository.findById(id).orElse(null);
+//		//if(produit != null) {
+//			//detailProduitService.deleteDetailProduit(produit.getDetailProduitEntity().getIdDetailProduit());
+//			produitRepository.deleteProduitById(id);
+//		//}
+//	}
+
 	@Transactional
 	@Override
 	public void deleteProduit(Long id) {
-		//ProduitEntity produit = produitRepository.findById(id).orElse(null);
-		//if(produit != null) {
-			//detailProduitService.deleteDetailProduit(produit.getDetailProduitEntity().getIdDetailProduit());
+		ProduitEntity produit = produitRepository.findById(id).orElse(null);
+		if(produit != null) {
+			detailProduitService.deleteDetailProduit(produit.getDetailProduitEntity().getIdDetailProduit());
 			produitRepository.deleteProduitById(id);
-		//}
+		}
 	}
 
 	@Override
@@ -100,6 +119,66 @@ public class ProduitServiceImpl implements ProduitService {
 		Float x = factureRepository.calculCA();
 		System.out.println(x);
 		return factureRepository.calculCA();
+	}
 
+	@Override
+	public List<ProduitEntity> retrieveProduitByPrice(){
+
+		List<ProduitEntity> x=produitRepository.retrieveProduitByPrice();
+		System.out.println(x);
+		return produitRepository.retrieveProduitByPrice();
+	}
+
+	@Override
+	public List<ProduitEntity> retrieveProduitByLibelle(String x){
+		List<ProduitEntity> y=produitRepository.retrieveProduitByLibelle(x);
+		System.out.println(y);
+		return  produitRepository.retrieveProduitByLibelle(x);
+
+	}
+
+	@Override
+	public List<ProduitEntity> retireveAllProduitByPriceDesc(){
+		List<ProduitEntity> x=produitRepository.retireveAllProduitByPriceDesc();
+		System.out.println(x);
+		return  produitRepository.retireveAllProduitByPriceDesc();
+	}
+
+	@Override
+	public List<ProduitEntity> retireveAllProduitByPriceAsc(){
+		List<ProduitEntity> x=produitRepository.retireveAllProduitByPriceAsc();
+		System.out.println(x);
+		return  produitRepository.retireveAllProduitByPriceAsc();
+	}
+
+	//Daami Adem
+	//DAAMI Adem
+	//ASSIGNING FOURNISSEUR TO PRODUIT
+	@Override
+	public void assignFournisseurToProduit(Long fournisseurId, Long produitId) {
+		FournisseurEntity f = FournisseurRepository.findById(fournisseurId).get();
+		ProduitEntity p = produitRepository.findById(produitId).get();
+		p. getFournisseurEntities().add(f);
+		produitRepository.save(p);
+	}
+
+	@Override
+	public List<FournisseurEntity> retrieveFournisseurByProduit(Long idProduit){
+		ProduitEntity Produit = produitRepository.findById(idProduit).get();
+		Iterator<FournisseurEntity> it = Produit.getFournisseurEntities().iterator();
+		if (it ==null){
+			return null ;
+		}
+		List<FournisseurEntity> LF = new ArrayList<>();
+		while(it.hasNext()){
+			LF.add(it.next());
+		}
+		return LF;
+	}
+
+	public List<ProduitEntity> retrieveProduitByPriceRange(float min,float max){
+		List<ProduitEntity> y=produitRepository.retrieveProduitByPriceRange(min,max);
+		System.out.println(y);
+		return  produitRepository.retrieveProduitByPriceRange(min,max);
 	}
 }
