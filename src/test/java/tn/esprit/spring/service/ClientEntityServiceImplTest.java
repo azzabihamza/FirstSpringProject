@@ -34,14 +34,14 @@ class ClientEntityServiceImplTest {
     @Test
     @Rollback(false)
     void addClient() {
-        ClientEntity client = new ClientEntity(null,"Azzabi","Hamza","hamza.azzabitest@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
+        ClientEntity client = new ClientEntity(null,"Azzabi","Hamza","hamza.azzabitest@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PREMIUM,null);
         System.out.println(client.toString());
         clientRepository.save(client);
     }
 
     @Test
     void deleteClient() {
-        ClientEntity client = new ClientEntity(1L,"Azzabi","Hamza","hamza.azzabi@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PRENUIM,null);
+        ClientEntity client = new ClientEntity(1L,"Azzabi","Hamza","hamza.azzabi@esprit.tn","0000",new Date("17/12/1998") , Profession.ETUDIANT, CategorieClient.PREMIUM,null);
         clientRepository.delete(client);
     }
 

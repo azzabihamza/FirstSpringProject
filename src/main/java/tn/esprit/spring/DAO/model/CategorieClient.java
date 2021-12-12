@@ -1,5 +1,5 @@
 package tn.esprit.spring.DAO.model;
 
 public enum CategorieClient {
-    FIDELE,ORDINAIRE,PRENUIM
+    FIDELE,ORDINAIRE,PREMUIM
 }
