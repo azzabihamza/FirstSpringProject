@@ -6,7 +6,7 @@ import tn.esprit.spring.DAO.model.DetailFacture;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// Auther: AZZABI HAMZA
 public class DetailFactureEntityMapper {
     public static DetailFacture mapDetailFactureEntityToDetailFacture (DetailFactureEntity detailFactureEntity) {
         return new DetailFacture(detailFactureEntity.getIdDetailFacture(), detailFactureEntity.getQte(), detailFactureEntity.getPrixTotal(), detailFactureEntity.getPourcentageRemise(), detailFactureEntity.getMontantRemise() ,detailFactureEntity.getProduit() , FactureEntityMapper.mapFactureEntityToFacture(detailFactureEntity.getFacture()));

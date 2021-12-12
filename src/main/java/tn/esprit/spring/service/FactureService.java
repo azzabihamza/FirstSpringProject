@@ -4,7 +4,7 @@ import tn.esprit.spring.DAO.entity.FactureEntity;
 import tn.esprit.spring.DAO.model.Facture;
 
 import java.util.List;
-
+// Auther: AZZABI HAMZA
 public interface FactureService {
     List<Facture> retrieveAllFactures();
 
@@ -38,5 +38,6 @@ public interface FactureService {
 
     FactureEntity assignClientToFacture(FactureEntity factureEntity, Long id);
 
+    void sendFactureByEmail(Facture facture, String text);
 
 }

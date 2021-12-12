@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import tn.esprit.spring.DAO.entity.DetailFactureEntity;
 
 import java.util.List;
-
+// Auther: AZZABI HAMZA
 public interface DetailFactureRepository extends CrudRepository<DetailFactureEntity, Long> {
 
     List<DetailFactureEntity> findAll();

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import tn.esprit.spring.DAO.entity.FactureEntity;
 
 import java.util.List;
-
+// Auther: AZZABI HAMZA
 public interface FactureRepository extends CrudRepository<FactureEntity, Long> {
 
     List<FactureEntity> findAll();

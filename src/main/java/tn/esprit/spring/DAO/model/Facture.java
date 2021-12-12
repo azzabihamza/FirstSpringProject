@@ -1,6 +1,4 @@
 package tn.esprit.spring.DAO.model;
-
-
 import lombok.Getter;
 import lombok.Setter;
 import tn.esprit.spring.DAO.entity.DetailFactureEntity;
@@ -9,6 +7,8 @@ import tn.esprit.spring.DAO.entity.DetailFactureEntity;
 
 import java.util.Date;
 import java.util.Set;
+
+// Auther: AZZABI HAMZA
 
 @Setter
 @Getter

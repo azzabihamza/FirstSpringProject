@@ -30,7 +30,7 @@ public class DetailProduitServiceImpl implements DetailProduitService {
 
     @Override
     public void deleteDetailProduit(long id) {
-        detailProduitRepository.deleteById(id);
+        detailProduitRepository.deleteDetailProduitEntityById(id);
     }
 
     @Override

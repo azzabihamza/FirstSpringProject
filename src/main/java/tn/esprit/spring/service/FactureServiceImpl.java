@@ -14,7 +14,7 @@ import tn.esprit.spring.DAO.model.Facture;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-
+// Auther: AZZABI HAMZA autre methode avancee send mail to client
 @Service
 public class FactureServiceImpl implements FactureService{
 
@@ -26,6 +26,9 @@ public class FactureServiceImpl implements FactureService{
 
     @Autowired
     DetailFactureService detailFactureService;
+
+    @Autowired
+    EmailServiceImpl emailService;
 
     @Override
     public List<Facture> retrieveAllFactures() {
@@ -133,5 +136,10 @@ public class FactureServiceImpl implements FactureService{
     @Override
     public List<Facture> retrieveFacturesBetweenDates(String date1, String date2) {
         return FactureEntityMapper.mapFactureEntityListToFactureList(factureRepository.retrieveAllFactureBetweenDate(date1,date2));
+    }
+
+    @Override
+    public void sendFactureByEmail(Facture facture, String text) {
+        emailService.sendSimpleMessage(facture.getClient().getEmail(), "Contact shop", text);
     }
 }

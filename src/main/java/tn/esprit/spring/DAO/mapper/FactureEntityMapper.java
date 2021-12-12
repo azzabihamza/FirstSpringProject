@@ -7,7 +7,7 @@ import tn.esprit.spring.DAO.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+// Auther: AZZABI HAMZA
 public class FactureEntityMapper {
    public static Facture mapFactureEntityToFacture(FactureEntity factureEntity) {
         return new Facture(factureEntity.getIdFacture(), factureEntity.getMontantRemise(),factureEntity.getMontantFacture(),factureEntity.getDateFacture(),factureEntity.isActive(),getClient(factureEntity.getClient()) /*,factureEntity.getDetailfactures()*/);

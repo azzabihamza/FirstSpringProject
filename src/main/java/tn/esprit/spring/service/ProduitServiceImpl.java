@@ -67,11 +67,11 @@ public class ProduitServiceImpl implements ProduitService {
 	@Transactional
 	@Override
 	public void deleteProduit(Long id) {
-		//ProduitEntity produit = produitRepository.findById(id).orElse(null);
-		//if(produit != null) {
-			//detailProduitService.deleteDetailProduit(produit.getDetailProduitEntity().getIdDetailProduit());
+		ProduitEntity produit = produitRepository.findById(id).orElse(null);
+		if(produit != null) {
+			detailProduitService.deleteDetailProduit(produit.getDetailProduitEntity().getIdDetailProduit());
 			produitRepository.deleteProduitById(id);
-		//}
+		}
 	}
 
 	@Override

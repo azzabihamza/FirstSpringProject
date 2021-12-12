@@ -11,6 +11,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+//@Author : AZZABI HAMZA
+
 @Entity
 @Table(name = "Facture")
 @Getter

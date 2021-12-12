@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+// Auther: AZZABI HAMZA
+
 @Entity
 @Table(name = "DetailFacture")
 public class DetailFactureEntity implements Serializable {

@@ -1,5 +1,6 @@
 package tn.esprit.spring.controller;
 
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -7,8 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.DAO.model.Facture;
 import tn.esprit.spring.response.ResponseHandler;
+import tn.esprit.spring.service.FacturePDFExporter;
 import tn.esprit.spring.service.FactureService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -79,5 +86,21 @@ public class FactureRestController {
         return factureService.retrieveFacturesBetweenDates(date1,date2);
     }
 
+    @GetMapping("/factureExportPdf")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Factures_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Facture> listFactures = factureService.retrieveAllFactures();
+
+        FacturePDFExporter exporter = new FacturePDFExporter(listFactures);
+        exporter.export(response);
+
+    }
 
 }
