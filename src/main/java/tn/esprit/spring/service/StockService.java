@@ -22,8 +22,7 @@ public interface StockService {
 	Stock retrieveStock(Long id);
 	 void deleteStock(long id);
 	 
-		List<Stock> retrieveStocksByLibelle(String test);
-	//	Stock updatestockqtebylibelle()
+		/*List<Stock> retrieveStocksByLibelle(String test);
 		void deletebylibandminqte(String lib,int qte);
 		List<OrderResponse> retrieveproduitandstock();
 		List<OrderResponse> retrieveproduitsandstocksbylibelle(String test);
@@ -39,6 +38,6 @@ public interface StockService {
 		List<Stock> retrievestockparidstockdeproduit(Long yes,String libp);
 		List<Fournisseurprod> retrievefournisseurandlibprodparstock(Long test);
 		List<Stock> retrieveqtestockandqtemin();
-		List<ProduitEntity> retrieveproduitsparfournisseursetstocks(FournisseurEntity p,Long test);
+		List<ProduitEntity> retrieveproduitsparfournisseursetstocks(FournisseurEntity p,Long test);*/
 
 }

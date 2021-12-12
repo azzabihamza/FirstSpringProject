@@ -28,6 +28,8 @@ public class ProduitEntity implements Serializable {
 	@JsonBackReference
 	@ManyToOne
 	Stock stock;
+
+
 	@ManyToOne
 	Rayon rayon;
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)

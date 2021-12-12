@@ -61,7 +61,7 @@ StockRepository stockrepository;
 		stockrepository.deleteById(id);
 	}
 
-	@Override
+/*	@Override
 	public List<Stock> retrieveStocksByLibelle(String test) {
 		// TODO Auto-generated method stub
 		List<Stock> stocks = (List<Stock>) stockrepository.retrievestocksbylibelle(test);
@@ -199,6 +199,6 @@ return stockrepository.retrieveavgstocksbylibstock();
 	public List<ProduitEntity> retrieveproduitsparfournisseursetstocks(FournisseurEntity p, Long test) {
 		// TODO Auto-generated method stub
 		return stockrepository.retrieveproduitsparfournisseursetstocks(p, test);
-	}
+	}*/
 
 }

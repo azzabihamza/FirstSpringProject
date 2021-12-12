@@ -26,7 +26,7 @@ public class StockRestController {
 		return liststocks;
 	}
 	
-	
+	/*
 	@GetMapping("/getAllqtes")
 	public List<Stock> getallqtandqtmin(){
 		List<Stock> liststocks = stockservice.retrieveqtestockandqtemin();
@@ -94,7 +94,7 @@ public class StockRestController {
 	@GetMapping("/countingstockbyqtemin/{var1}")
 	public int counting(@PathVariable("var1") int var1) {
 	return stockservice.countbyqtemin(var1);
-	}
+	}*/
 	
 	@PostMapping("/add-stock")
 	public Stock addStock(@RequestBody Stock c)
@@ -106,7 +106,7 @@ public class StockRestController {
 	public void removeStock(@PathVariable("stock-id") Long stockId) {
 		stockservice.deleteStock(stockId);
 	}
-	
+	/*
 	@DeleteMapping("/remove-stocktest/{stock-lib}/{stock-qtemin}")
 	public void removeStock2(@PathVariable("stock-lib") String stocklib,@PathVariable("stock-qtemin") int qtemin) {
 		stockservice.deletebylibandminqte(stocklib, qtemin);
@@ -128,6 +128,6 @@ public class StockRestController {
 	
 	public void modifyqteStockbylib(@PathVariable("qte") int qte,@PathVariable("lib") String lib) {
  stockservice.updatestockqtebylibelle(qte, lib);
-	}
+	}*/
 	
 }

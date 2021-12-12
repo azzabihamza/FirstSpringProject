@@ -20,7 +20,7 @@ import java.util.List;
 @Repository
 @EnableJpaRepositories
 public interface StockRepository extends CrudRepository <Stock,Long>{
-	@Query("SELECT s FROM Stock s WHERE s.libelleStock= :test")
+/*	@Query("SELECT s FROM Stock s WHERE s.libelleStock= :test")
 	List<Stock> retrievestocksbylibelle(@Param ("test") String test);
 	
 	@Query("SELECT s FROM Stock s WHERE s.qteStock=0 and s.idStock=:test")
@@ -95,7 +95,7 @@ public interface StockRepository extends CrudRepository <Stock,Long>{
 	@Transactional
 	@Query("DELETE FROM Stock s WHERE s.libelleStock= :test AND s.qteMin = :qtemin")
 	void deletestockbylibandqtmin(@Param("test") String test, @Param("qtemin") int qtemin);
-	
+	*/
 	
 }
 

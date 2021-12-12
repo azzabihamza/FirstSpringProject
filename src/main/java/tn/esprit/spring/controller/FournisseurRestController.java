@@ -31,7 +31,7 @@ public class FournisseurRestController {
         return fournisseurservice.retrieveAllFournisseur();
     }
     //affichage par id
-    // http://localhost:8089/SpringMVC/servlet/retrieveClient/1
+    // http://localhost:8089/SpringMVC/servlet/retrieveFournisseur/1
     @GetMapping("/retrieveFournisseur/{FournisseurId}")
     public FournisseurEntity retrieveFournisseur(@PathVariable("FournisseurId") Long FournisseurId) {
         return fournisseurservice.retrieveFournisseur(FournisseurId);
