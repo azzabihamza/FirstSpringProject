@@ -2,6 +2,7 @@ package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.DAO.entity.CategorieClient;
 import tn.esprit.spring.DAO.entity.ClientEntity;
@@ -88,7 +89,7 @@ public class ClientRestController {
     }
 
     // http://localhost:8089/SpringMVC/client/add-client
-    @PostMapping("/add-client")
+    @PostMapping(value="/add-client", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ClientEntity addClient(@RequestBody ClientEntity c)
     {
