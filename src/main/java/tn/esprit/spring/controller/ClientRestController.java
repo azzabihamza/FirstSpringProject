@@ -2,11 +2,12 @@ package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import tn.esprit.spring.DAO.entity.CategorieClient;
 import tn.esprit.spring.DAO.entity.ClientEntity;
 import tn.esprit.spring.DAO.entity.FactureEntity;
+import tn.esprit.spring.DAO.entity.ProduitEntity;
 import tn.esprit.spring.DAO.entity.Profession;
 import tn.esprit.spring.service.ClientService;
 import tn.esprit.spring.service.EmailServiceImpl;
@@ -29,7 +30,6 @@ public class ClientRestController {
         return clientService.retrieveAllClients();
     }
 
-    // http://localhost:8089/SpringMVC/client/retrieve-client/8
     @GetMapping("/retrieve-client/{client-id}")
     @ResponseBody
     public ClientEntity retrieveClient(@PathVariable("client-id") Long clientId) {
@@ -65,13 +65,15 @@ public class ClientRestController {
         return list;
     }
 
-    //methode1
+
+    //EX : http://localhost:8081/SpringMVC/servlet/chiffre-affaire-by-cat/ORDINAIRE/2000-11-10/2025-11-10
     @GetMapping("/chiffre-affaire-by-cat/{categorie-client}/{start}/{end}")
     @ResponseBody
     public  float getChiffreAffaireParCategorieClient(@PathVariable("categorie-client") CategorieClient categorieClient, @PathVariable("start")  @DateTimeFormat(pattern="yyyy-MM-dd") Date StartDate, @PathVariable("end")@DateTimeFormat(pattern="yyyy-MM-dd") Date endDate) {
         Float CA =clientService.getChiffreAffaireParCategorieClient(categorieClient,StartDate,endDate);
         return CA;
     }
+
 
     @GetMapping("/chiffre-affaire-by-client/{idclient}")
     @ResponseBody
@@ -88,8 +90,7 @@ public class ClientRestController {
         return CA;
     }
 
-    // http://localhost:8089/SpringMVC/client/add-client
-    @PostMapping(value="/add-client", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/add-client")
     @ResponseBody
     public ClientEntity addClient(@RequestBody ClientEntity c)
     {
@@ -97,7 +98,6 @@ public class ClientRestController {
         return client;
     }
 
-    // http://localhost:8089/SpringMVC/client/add-client
     @PostMapping("/add-client-repo")
     @ResponseBody
     public ClientEntity addClientRepo(@RequestBody ClientEntity c)
@@ -107,7 +107,6 @@ public class ClientRestController {
     }
 
 
-    // http://localhost:8089/SpringMVC/client/remove-client/{client-id}
     @DeleteMapping("/remove-client/{client-id}")
     @ResponseBody
     public void removeClient(@PathVariable("client-id") Long clientId) {
@@ -133,7 +132,7 @@ public class ClientRestController {
     public List<ClientEntity> retrieveClientbyProfessionAndCat(@PathVariable("profession") Profession Profession,@PathVariable("categorie-client") CategorieClient categorieClient) {
         return	clientService.retrieveClientbyCategorieAndProfession(Profession, categorieClient);
     }
-    // http://localhost:8089/SpringMVC/client/modify-client
+
     @PutMapping("/modify-client")
     @ResponseBody
     public ClientEntity modifyClient(@RequestBody ClientEntity client) {
@@ -146,4 +145,31 @@ public class ClientRestController {
         return clientService.updateClientById(client, clientId);
     }
 
+
+    @GetMapping("/client-fidele")
+    @ResponseBody
+    public int ClientFidele() {
+
+        return  clientService.statClientByCat(CategorieClient.FIDELE) ;
+    }
+
+    @GetMapping("/client-premium")
+    @ResponseBody
+    public int ClientPremium() {
+
+        return  clientService.statClientByCat(CategorieClient.PRENUIM) ;
+    }
+
+    @GetMapping("/client-ordinaire")
+    @ResponseBody
+    public int ClientOrdinaire() {
+
+        return  clientService.statClientByCat(CategorieClient.ORDINAIRE) ;
+    }
+
+    @GetMapping("/Produit-by-client/{client}/{facture}")
+    @ResponseBody
+    public List<ProduitEntity> ListProduitByFacture(@PathVariable("client") Long idClient,@PathVariable("facture") Long idfacture){
+        return clientService.ListProduitAcheteByClient(idClient,idfacture);
+    }
 }

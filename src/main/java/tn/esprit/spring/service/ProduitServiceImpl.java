@@ -1,6 +1,8 @@
 package tn.esprit.spring.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.DAO.entity.DetailProduitEntity;
+import tn.esprit.spring.DAO.entity.FournisseurEntity;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
 import tn.esprit.spring.repository.*;
 
@@ -27,6 +30,8 @@ public class ProduitServiceImpl implements ProduitService {
 	@Autowired
 	FactureRepository factureRepository;
 
+	@Autowired
+	FournisseurRepository FournisseurRepository;
 	@Override
 	public List<ProduitEntity> retrieveAllProduits() {
 		List<ProduitEntity> produits= (List<ProduitEntity>) produitRepository.findAll();
@@ -101,5 +106,30 @@ public class ProduitServiceImpl implements ProduitService {
 		System.out.println(x);
 		return factureRepository.calculCA();
 
+	}
+
+	//Daami Adem
+	//DAAMI Adem
+	//ASSIGNING FOURNISSEUR TO PRODUIT
+	@Override
+	public void assignFournisseurToProduit(Long fournisseurId, Long produitId) {
+		FournisseurEntity f = FournisseurRepository.findById(fournisseurId).get();
+		ProduitEntity p = produitRepository.findById(produitId).get();
+		p. getFournisseurEntities().add(f);
+		produitRepository.save(p);
+	}
+
+	@Override
+	public List<FournisseurEntity> retrieveFournisseurByProduit(Long idProduit){
+		ProduitEntity Produit = produitRepository.findById(idProduit).get();
+		Iterator<FournisseurEntity> it = Produit.getFournisseurEntities().iterator();
+		if (it ==null){
+			return null ;
+		}
+		List<FournisseurEntity> LF = new ArrayList<>();
+		while(it.hasNext()){
+			LF.add(it.next());
+		}
+		return LF;
 	}
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.DAO.entity.FournisseurEntity;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
 import tn.esprit.spring.service.ProduitService;
 
@@ -36,6 +37,19 @@ public class ProduitRestController {
     @GetMapping(value = "/getChiffreAffaire")
     public float AffichageChiffreAffaire() {
         return produitService.AffichageChiffreAffaire();
+    }
+
+    //DAAMIAdem
+    //affecter un fournisseur a un produit
+    @ResponseBody
+    @PutMapping("/assignFournisseurToProduit/{idFournisseur}/{idProduit}")
+    public void assignFournisseurToProduit(@PathVariable("idFournisseur") Long fournisseurId,@PathVariable("idProduit") Long produitId) {
+        produitService.assignFournisseurToProduit(fournisseurId, produitId);
+    }
+
+    @GetMapping("getFournisseurProduit/{idProduit}")
+    public List<FournisseurEntity> getFournisseurProduit(@PathVariable("idProduit") Long idProduit){
+        return produitService.retrieveFournisseurByProduit(idProduit);
     }
 
     }
