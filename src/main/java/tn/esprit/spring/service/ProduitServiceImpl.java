@@ -1,9 +1,6 @@
 package tn.esprit.spring.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -142,6 +139,7 @@ public class ProduitServiceImpl implements ProduitService {
 		System.out.println(y);
 		return  produitRepository.retrieveProduitByPriceRange(min,max);
 	}
+
 
 
 	//Daami Adem

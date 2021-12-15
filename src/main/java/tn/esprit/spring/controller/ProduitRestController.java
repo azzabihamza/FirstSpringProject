@@ -55,6 +55,11 @@ public class ProduitRestController {
         return produitService.retrieveProduitByLibelle(libelle);
     }
 
+    @GetMapping(value="/getProduitById/{id}")
+    public ProduitEntity findById(@PathVariable("id") Long id){
+        return produitService.retrieveProduit(id);
+    }
+
     @GetMapping(value = "/getProduitByPrice")
     public List<ProduitEntity> retrieveProduitByPrice() {
         return produitService.retrieveProduitByPrice();

@@ -1,6 +1,7 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import tn.esprit.spring.DAO.entity.FournisseurEntity;
 import tn.esprit.spring.DAO.entity.ProduitEntity;
@@ -40,5 +41,6 @@ public interface ProduitService {
     public List<FournisseurEntity> retrieveFournisseurByProduit(Long idProduit);
     //assignFournisseurToProduit
     public void assignFournisseurToProduit(Long fournisseurId, Long produitId) ;
+
 
 }
