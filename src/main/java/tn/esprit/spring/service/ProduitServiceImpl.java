@@ -105,8 +105,44 @@ public class ProduitServiceImpl implements ProduitService {
 		Float x = factureRepository.calculCA();
 		System.out.println(x);
 		return factureRepository.calculCA();
+	}
+
+	@Override
+	public List<ProduitEntity> retrieveProduitByPrice(){
+
+		List<ProduitEntity> x=produitRepository.retrieveProduitByPrice();
+		System.out.println(x);
+		return produitRepository.retrieveProduitByPrice();
+	}
+
+	@Override
+	public List<ProduitEntity> retrieveProduitByLibelle(String x){
+		List<ProduitEntity> y=produitRepository.retrieveProduitByLibelle(x);
+		System.out.println(y);
+		return  produitRepository.retrieveProduitByLibelle(x);
 
 	}
+
+	@Override
+	public List<ProduitEntity> retireveAllProduitByPriceDesc(){
+		List<ProduitEntity> x=produitRepository.retireveAllProduitByPriceDesc();
+		System.out.println(x);
+		return  produitRepository.retireveAllProduitByPriceDesc();
+	}
+
+	@Override
+	public List<ProduitEntity> retireveAllProduitByPriceAsc(){
+		List<ProduitEntity> x=produitRepository.retireveAllProduitByPriceAsc();
+		System.out.println(x);
+		return  produitRepository.retireveAllProduitByPriceAsc();
+	}
+
+	public List<ProduitEntity> retrieveProduitByPriceRange(float min,float max){
+		List<ProduitEntity> y=produitRepository.retrieveProduitByPriceRange(min,max);
+		System.out.println(y);
+		return  produitRepository.retrieveProduitByPriceRange(min,max);
+	}
+
 
 	//Daami Adem
 	//DAAMI Adem

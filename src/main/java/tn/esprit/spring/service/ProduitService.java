@@ -25,6 +25,16 @@ public interface ProduitService {
 
     public Float AffichageChiffreAffaire();
 
+    public List<ProduitEntity> retrieveProduitByPrice();
+
+    public List<ProduitEntity> retrieveProduitByPriceRange(float min,float max);
+
+    public List<ProduitEntity> retrieveProduitByLibelle(String x);
+
+    public List<ProduitEntity> retireveAllProduitByPriceAsc();
+
+    public List<ProduitEntity> retireveAllProduitByPriceDesc();
+
     //DAAMI Adem
     //affichage de la liste de fournisseur de chaque produit
     public List<FournisseurEntity> retrieveFournisseurByProduit(Long idProduit);

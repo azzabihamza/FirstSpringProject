@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.DAO.entity.FactureEntity;
 import tn.esprit.spring.DAO.model.Facture;
 import tn.esprit.spring.response.ResponseHandler;
 import tn.esprit.spring.service.FacturePDFExporter;
@@ -40,7 +41,7 @@ public class FactureRestController {
     }
 
     @PutMapping(value="/changeStatus", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void changeStatus(@RequestBody Facture facture){
+    public void changeStatus(@RequestBody FactureEntity facture){
         factureService.cancelFacture(facture);
     }
 

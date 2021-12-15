@@ -31,6 +31,11 @@ public class Stock implements Serializable {
 	public void setIdStock(Long idStock) {
 		this.idStock = idStock;
 	}
+	public Stock(int qteStock, int qteMin) {
+		super();
+		this.qteStock = qteStock;
+		this.qteMin = qteMin;
+	}
 	public int getQteStock() {
 		return qteStock;
 	}

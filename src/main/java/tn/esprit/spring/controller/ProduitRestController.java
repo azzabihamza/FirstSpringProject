@@ -34,10 +34,37 @@ public class ProduitRestController {
         produitService.deleteProduit(idProduit);
     }
 
+    @GetMapping("getProduitByPriceRange/{min}/{max}")
+    public List<ProduitEntity> retrieveProduitByPriceRange(@PathVariable("min") float min,@PathVariable("max") float max){
+
+        return  produitService.retrieveProduitByPriceRange(min,max);
+    }
+
+    @GetMapping(value = "/getAllProduitByPriceAsc")
+    public List<ProduitEntity> retireveAllProduitByPriceAsc() {
+        return produitService.retireveAllProduitByPriceAsc();
+    }
+
+    @GetMapping(value = "/getAllProduitByPriceDesc")
+    public List<ProduitEntity> retireveAllProduitByPriceDesc() {
+        return produitService.retireveAllProduitByPriceDesc();
+    }
+
+    @GetMapping(value = "/getProduitByLibelle/{libelle}")
+    public List<ProduitEntity> retrieveProduitByLibelle(@PathVariable("libelle") String libelle) {
+        return produitService.retrieveProduitByLibelle(libelle);
+    }
+
+    @GetMapping(value = "/getProduitByPrice")
+    public List<ProduitEntity> retrieveProduitByPrice() {
+        return produitService.retrieveProduitByPrice();
+    }
+
     @GetMapping(value = "/getChiffreAffaire")
     public float AffichageChiffreAffaire() {
         return produitService.AffichageChiffreAffaire();
     }
+
 
     //DAAMIAdem
     //affecter un fournisseur a un produit

@@ -36,9 +36,11 @@ public class FactureServiceImpl implements FactureService{
     }
 
     @Override
-    public void cancelFacture(Facture facture) {
-        FactureEntity factureEntity = FactureEntityMapper.mapFactureToFactureEntity(facture);
-        factureRepository.updateActive(factureEntity.getIdFacture(),false);
+    public void cancelFacture(FactureEntity facture) {
+       // FactureEntity factureEntity = FactureEntityMapper.mapFactureToFactureEntity(facture);
+       // factureRepository.updateActive(factureEntity.getIdFacture(),false);
+        facture.setActive(false);
+        factureRepository.save(facture);
     }
 
     @Override
