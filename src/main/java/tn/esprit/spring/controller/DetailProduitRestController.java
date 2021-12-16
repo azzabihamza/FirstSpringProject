@@ -15,7 +15,7 @@ import tn.esprit.spring.service.DetailProduitService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"*"})
 public class DetailProduitRestController {
 
     @Autowired
